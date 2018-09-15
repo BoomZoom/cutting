@@ -11,26 +11,20 @@ namespace Core
     class Tool
     {
         private readonly string name;
-      //  private readonly double feedCharacteristic;
+    
 
-        private int kiv;
+        private double kiv;
 
 
-        public Tool(int Kiv, string name/*,double feedCharacteristic*/)
+        public Tool( string name ,double Kiv)
         {
             this.kiv = Kiv;
-            this.name = name;
-          //  this.feedCharacteristic = feedCharacteristic;
+            this.name = name;          
         }
 
-        public int Kiv { get => kiv; }
+        public double Kiv { get => kiv; }
 
-        public string Name => name;
-
-        //public bool FeedCharacteristic(double s)
-        //{
-        //    return s <= feedCharacteristic;
-        //}
+        public string Name => name;       
     }
 
     class Handling
@@ -42,15 +36,15 @@ namespace Core
         private readonly double cp;
         private readonly double xp;
         private readonly double yp;
-        private readonly double mp;       
+        private readonly double np;       
 
-        public Handling(string name,double Cp,double Xp,double Yp,double Mp)
+        public Handling(string name,double Cp,double Xp,double Yp,double Np)
         {
             this.name = name;
             this.cp = Cp;
             this.xp = Xp;
             this.yp = Yp;
-            this.mp = Mp;
+            this.np = Np;
         }
 
         public double Cp => cp;
@@ -59,22 +53,22 @@ namespace Core
 
         public double Yp => yp;
 
-        public double Mp => mp;
+        public double Np => np;
 
     }
 
     class Kv
     {
-        private int kmv;
-        private int kpv;
-        private int kiv;
-        public Kv(int Kmv, int Kpv, int Kiv)
+        private double kmv;
+        private double kpv;
+        private double kiv;
+        public Kv(double Kmv, double Kpv, double Kiv)
         {
             this.kmv = Kmv;
             this.kpv = Kpv;
             this.kiv = Kiv;
         }
-        public int getKv
+        public double getKv
         {
             get => kpv * kmv * kiv;
         }
@@ -84,15 +78,15 @@ namespace Core
     {
         private readonly string name;
         //private Kv kv;
-        private readonly int cv;
-        private readonly int xv;
-        private readonly int yv;
-        private readonly int mv;
+        private readonly double cv;
+        private readonly double xv;
+        private readonly double yv;
+        private readonly double mv;
 
-        private int kmv;
-        private int kpv;
+        private double kmv;
+        private double kpv;
 
-        public Matirial(string name, int Cv, int Xv, int Yv, int Mv, int Kmv, int Kpv)
+        public Matirial(string name, int Cv, double Xv, double Yv, double Mv, double Kmv, double Kpv)
         {
             this.name = name;
             cv = Cv;
@@ -106,16 +100,16 @@ namespace Core
 
         public string Name => name;
 
-        public int Cv => cv;
+        public double Cv => cv;
 
-        public int Xv => xv;
+        public double Xv => xv;
 
-        public int Yv => yv;
+        public double Yv => yv;
 
-        public int Mv => mv;
+        public double Mv => mv;
 
-        public int Kmv { get => kmv; }
-        public int Kpv { get => kpv; }
+        public double Kmv { get => kmv; }
+        public double Kpv { get => kpv; }
     }
 
     class Calculation
@@ -181,7 +175,7 @@ namespace Core
         /// </summary>
         public double spindleSpeed_N
         {
-            get => n != 0 ? n : n = (1000 / cuttingSpeed_V) / (PI * D);
+            get => n != 0 ? n : n = (1000 * cuttingSpeed_V) / (PI * D);
         }
 
         public double SetTheActualSpeed
@@ -201,7 +195,7 @@ namespace Core
         
         public double cuttingForce
         {
-            get => Pz!=0? Pz: Pz= 9.8*handling.Cp*Pow(t,handling.Xp)*Pow(S,handling.Yp)*Pow(V,handling.Mp)*1;//TODO Сделать коэфициент Кp
+            get => Pz!=0? Pz: Pz= 9.8*handling.Cp*Pow(t,handling.Xp)*Pow(S,handling.Yp)*Pow(V,handling.Np)*1;//TODO Сделать коэфициент Кp
         }
 
     }
