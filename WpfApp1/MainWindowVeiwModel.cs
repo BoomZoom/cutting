@@ -81,5 +81,34 @@ namespace WpfApp1
         {
             get { return "Pz = " + calculation.cuttingForce_Pz.ToString() + " H"; }
         }
+
+        public double T
+        {
+            get => calculation.T;
+            set
+            {
+                calculation.T = value;
+                //OnPropertyChanged("Matirial");
+                //TODO разобратся с биндингом
+
+                System.Windows.Forms.MessageBox.Show("Test");
+            }
+        }
+        public double L
+        {
+            get => calculation.L;
+            set => calculation.L = value;
+        }
+        public double S
+        {
+            get => calculation.S;
+            set => calculation.S = value;
+        }
+        public double D
+        {
+            get => calculation.D;
+            set => calculation.D = value;
+        }
+
     }
 }

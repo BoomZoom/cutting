@@ -9,23 +9,23 @@ namespace Core
     using static System.Math;
     class Calculation
     {        
-        private Matirial matirial;//Материал
-        private Tool tool;//Инструмент
-        private Handling handling;//Вид обработки
+        private Matirial matirial;  //Материал
+        private Tool tool;          //Инструмент
+        private Handling handling;  //Вид обработки
 
-        private Kv kv;//Коэфициент Кv
+        private Kv kv;              //Коэфициент Кv
 
-        private double t;//глубина резания
-        private double S;//подача
-        private double D;//диаметр заготовки
-        private double L;//длина обрабатываемой поверхности
+        private double t;           //глубина резания
+        private double s;           //подача
+        private double d;           //диаметр заготовки
+        private double l;           //длина обрабатываемой поверхности
 
-        private double n = 0; //частота вращения шпинделя
-        private double V = 0;//скорость резанья
-        private double Tm = 0;//Машиное время
-        private double Pz = 0;//усилие резания
+        private double n = 0;       //частота вращения шпинделя
+        private double V = 0;       //скорость резанья
+        private double Tm = 0;      //Машиное время
+        private double Pz = 0;      //усилие резания
 
-        int T;//Время стойкости инструмента (мин)
+        private int Time;           //Время стойкости инструмента (мин)
 
         private Calculation(Matirial matirial, Tool tool, Handling handling)
         {
@@ -50,11 +50,11 @@ namespace Core
         public Calculation(Matirial matirial, Tool tool, Handling handling, double t, double S, double D, double L, int T = 60) : this(matirial, tool, handling)
         {
             this.t = t;
-            this.S = S;
-            this.D = D;
-            this.L = L;
+            this.s = S;
+            this.d = D;
+            this.l = L;
 
-            this.T = T;
+            this.Time = T;
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Core
         /// </summary>
         public double cuttingSpeed_V
         {
-            get => V != 0 ? V : V = matirial.Cv / (Pow(T, matirial.Mv) * Pow(t, matirial.Xv) * Pow(S, matirial.Yv) * kv.getKv);
+            get => V != 0 ? V : V = matirial.Cv / (Pow(Time, matirial.Mv) * Pow(t, matirial.Xv) * Pow(s, matirial.Yv) * kv.getKv);
         }
 
 
@@ -71,7 +71,7 @@ namespace Core
         /// </summary>
         public double spindleSpeed_N
         {
-            get => n != 0 ? n : n = (1000 * cuttingSpeed_V) / (PI * D);
+            get => n != 0 ? n : n = (1000 * cuttingSpeed_V) / (PI * d);
         }
 
         public double SetTheActualSpeed
@@ -84,15 +84,18 @@ namespace Core
         /// </summary>
         public double computerTime_Tm
         {
-            get => Tm != 0 ? Tm : Tm = (L + 2) / (spindleSpeed_N * S);
+            get => Tm != 0 ? Tm : Tm = (l + 2) / (spindleSpeed_N * s);
         }
-
-        //TODO сделать сущьность обработка с нужными коэфицыентами для этого метода
-
+        /// <summary>
+        /// Сила резанья (H)
+        /// </summary>
         public double cuttingForce_Pz
         {
-            get => Pz != 0 ? Pz : Pz = 9.8 * handling.Cp * Pow(t, handling.Xp) * Pow(S, handling.Yp) * Pow(V, handling.Np) * 1;//TODO Сделать коэфициент Кp
+            get => Pz != 0 ? Pz : Pz = 9.8 * handling.Cp * Pow(t, handling.Xp) * Pow(s, handling.Yp) * Pow(V, handling.Np) * 1;//TODO Сделать коэфициент Кp
         }
-
+        public double T { get => t; set => t = value; }
+        public double S { get => s; set => s = value; }
+        public double D { get => d; set => d = value; }
+        public double L { get => l; set => l = value; }
     }
 }

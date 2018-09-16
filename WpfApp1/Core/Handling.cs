@@ -7,10 +7,7 @@ using System.Threading.Tasks;
 namespace Core
 {
     class Handling:TechnoligiItemBase
-    { private string name;
-
-        //private double S;//подача
-
+    { 
         private readonly double cp;
         private readonly double xp;
         private readonly double yp;

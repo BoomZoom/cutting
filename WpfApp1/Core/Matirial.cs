@@ -24,10 +24,8 @@ namespace Core
         }
 
     }
-    class Matirial
+    class Matirial:TechnoligiItemBase
     {
-        private readonly string name;
-        //private Kv kv;
         private readonly double cv;
         private readonly double xv;
         private readonly double yv;
@@ -36,9 +34,8 @@ namespace Core
         private double kmv;
         private double kpv;
 
-        public Matirial(string name, int Cv, double Xv, double Yv, double Mv, double Kmv, double Kpv)
+        public Matirial(string name, int Cv, double Xv, double Yv, double Mv, double Kmv, double Kpv):base(name)
         {
-            this.name = name;
             cv = Cv;
             xv = Xv;
             yv = Yv;
@@ -48,7 +45,6 @@ namespace Core
             kpv = Kpv;
         }
 
-        public string Name => name;
 
         public double Cv => cv;
 
