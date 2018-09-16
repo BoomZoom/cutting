@@ -38,7 +38,17 @@ namespace WpfApp1
             {
                 case "Matirial":
                     {
-                        System.Windows.Forms.MessageBox.Show("Test");
+                        System.Windows.Forms.MessageBox.Show("Matirial");
+                    }
+                    break;
+                case "Tool":
+                    {
+                        System.Windows.Forms.MessageBox.Show("Tool");
+                    }
+                    break;
+                case "Handling":
+                    {
+                        System.Windows.Forms.MessageBox.Show("Handling");
                     }
                     break;
                 default:

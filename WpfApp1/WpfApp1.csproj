@@ -56,6 +56,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Comand.cs" />
+    <Compile Include="Core\Calculation.cs" />
+    <Compile Include="Core\Handling.cs" />
+    <Compile Include="Core\Tool.cs" />
     <Compile Include="VeiwModelBase.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -72,7 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindowVeiwModel.cs" />
-    <Compile Include="Matirial.cs" />
+    <Compile Include="Core\Matirial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
