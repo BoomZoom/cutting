@@ -35,7 +35,7 @@
             <TextBlock Grid.Row="1" VerticalAlignment="Center" ToolTip="Подача"> S =</TextBlock>
             <DockPanel Grid.Row="2">
                 <TextBlock VerticalAlignment="Center" ToolTip="Выбор Материала">Материал</TextBlock>
-                <Button DockPanel.Dock="Right" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0" FontSize="15" FontWeight="Black">+</Button>
+                <Button Command="{Binding ChangeVeiwCommand}" CommandParameter="Matirial"  DockPanel.Dock="Right" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0" FontSize="15" FontWeight="Black">+</Button>
             </DockPanel>
             <DockPanel Grid.Row="3">
                 <TextBlock  VerticalAlignment="Center" ToolTip="Выбор Инструмента">Инструмент</TextBlock>

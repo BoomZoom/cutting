@@ -4,16 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core;
+using System.Windows.Input;
 
 namespace WpfApp1
 {
-    class MainWindowVeiwModel
+    class MainWindowVeiwModel : VeiwModelBase
     {
 
-        Matirial matirial;
-        Tool tool;
-        Handling handling;
-        Calculation calculation;
+        private Comand comand;
+
+        private Matirial matirial;
+        private Tool tool;
+        private Handling handling;
+        private Calculation calculation;
 
         public MainWindowVeiwModel()
         {
@@ -22,18 +25,39 @@ namespace WpfApp1
             handling = new Handling("Точение", 55, 1, 0.66, 0);
             calculation = new Calculation(matirial, tool, handling, 4, 1, 95, 100);
 
+            comand = new Comand(ChangeVeiw);
+
             //System.Windows.Forms.MessageBox.Show(calculation.cuttingSpeed_V.ToString());
             //System.Windows.Forms.MessageBox.Show(calculation.spindleSpeed_N.ToString());
             //System.Windows.Forms.MessageBox.Show(calculation.computerTime_Tm.ToString());
         }
 
+        private void ChangeVeiw(object obj)
+        {
+            switch (obj.ToString())
+            {
+                case "Matirial":
+                    {
+                        System.Windows.Forms.MessageBox.Show("Test");
+                    }
+                    break;
+                default:
+                    throw new ArgumentException("неверный параметр выбора окна!");
+            }
+        }
+
+        public ICommand ChangeVeiwCommand
+        {
+            get => comand;
+        }
+
         public string CuttingSpeed
         {
-            get { return "V = " + calculation.cuttingSpeed_V.ToString()+" м/мин"; }
+            get { return "V = " + calculation.cuttingSpeed_V.ToString() + " м/мин"; }
         }
         public string SpindleSpeed
         {
-            get { return "n = " + calculation.spindleSpeed_N.ToString()+" об/мин"; }
+            get { return "n = " + calculation.spindleSpeed_N.ToString() + " об/мин"; }
         }
         public string ComputerTime
         {
