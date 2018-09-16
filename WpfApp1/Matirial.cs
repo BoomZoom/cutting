@@ -114,11 +114,11 @@ namespace Core
 
     class Calculation
     {
-        private Matirial matirial;
-        private Tool tool;
-        private Handling handling;
+        private Matirial matirial;//Материал
+        private Tool tool;//Инструмент
+        private Handling handling;//Вид обработки
 
-        private Kv kv;
+        private Kv kv;//Коэфициент Кv
 
         private double t;//глубина резания
         private double S;//подача
@@ -140,8 +140,9 @@ namespace Core
 
             kv = new Kv(this.matirial.Kmv, this.matirial.Kpv, tool.Kiv);
         }
+
         /// <summary>
-        /// 
+        /// Конструктор
         /// </summary>
         /// <param name="matirial">Материал</param>
         /// <param name="tool">Инструмент</param>
@@ -193,7 +194,7 @@ namespace Core
 
         //TODO сделать сущьность обработка с нужными коэфицыентами для этого метода
         
-        public double cuttingForce
+        public double cuttingForce_Pz
         {
             get => Pz!=0? Pz: Pz= 9.8*handling.Cp*Pow(t,handling.Xp)*Pow(S,handling.Yp)*Pow(V,handling.Np)*1;//TODO Сделать коэфициент Кp
         }

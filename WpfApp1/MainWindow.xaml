@@ -6,19 +6,60 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Text="123"/>
+
+        <Grid Grid.Column="0" Grid.Row="0" Margin="10" Background="Bisque">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" VerticalAlignment="Center" ToolTip="Глубина резания"> t =</TextBlock>
+            <TextBlock Grid.Row="1" VerticalAlignment="Center" ToolTip="Подача"> S =</TextBlock>
+            <DockPanel Grid.Row="2">
+                <TextBlock VerticalAlignment="Center" ToolTip="Выбор Материала">Материал</TextBlock>
+                <Button DockPanel.Dock="Right" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0" FontSize="15" FontWeight="Black">+</Button>
+            </DockPanel>
+            <DockPanel Grid.Row="3">
+                <TextBlock  VerticalAlignment="Center" ToolTip="Выбор Инструмента">Инструмент</TextBlock>
+                <Button DockPanel.Dock="Right" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0"  FontSize="15" FontWeight="Black">+</Button>
+            </DockPanel>
+            <DockPanel Grid.Row="4">
+                <TextBlock  VerticalAlignment="Center" ToolTip="Выбор Вида обработки">Вид обаботки</TextBlock>
+                <Button DockPanel.Dock="Right" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0"  FontSize="15" FontWeight="Black">+</Button>
+            </DockPanel>
+            <!--            Columns 1                -->
+
+            <TextBox Grid.Column="1" Grid.Row="0">2</TextBox>
+            <TextBox Grid.Column="1" Grid.Row="1">0.2</TextBox>
+            <ComboBox Grid.Column="1" Grid.Row="2"></ComboBox>
+            <ComboBox Grid.Column="1" Grid.Row="3"></ComboBox>
+            <ComboBox Grid.Column="1" Grid.Row="4"></ComboBox>
+
+        </Grid>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="10" Background="Bisque">
+            <TextBlock Padding="10" Text="{Binding Path=CuttingSpeed,Mode=OneWay}"/>
+            <TextBlock Padding="10" Text="{Binding Path=SpindleSpeed,Mode=OneWay}"/>
+            <TextBlock Padding="10" Text="{Binding Path=ComputerTime,Mode=OneWay}"/>
+            <TextBlock Padding="10" Text="{Binding Path= CuttingForce,Mode=OneWay}"/>
+        </StackPanel>
     </Grid>
 </Window>
