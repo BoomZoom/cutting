@@ -58,8 +58,30 @@
     <Compile Include="Comand.cs" />
     <Compile Include="Core\Calculation.cs" />
     <Compile Include="Core\Handling.cs" />
+    <Compile Include="Core\TechnoligiItemBase.cs" />
     <Compile Include="Core\Tool.cs" />
+    <Compile Include="DialogWindows\AddHandling.xaml.cs">
+      <DependentUpon>AddHandling.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\AddMatirial.xaml.cs">
+      <DependentUpon>AddMatirial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\AddTool.xaml.cs">
+      <DependentUpon>AddTool.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VeiwModelBase.cs" />
+    <Page Include="DialogWindows\AddHandling.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\AddMatirial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\AddTool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

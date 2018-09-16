@@ -6,22 +6,16 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    class Tool
+    class Tool : TechnoligiItemBase
     {
-        private readonly string name;
-
-
         private double kiv;
 
-
-        public Tool(string name, double Kiv)
+        public Tool(string name, double Kiv) : base(name)
         {
             this.kiv = Kiv;
-            this.name = name;
         }
 
         public double Kiv { get => kiv; }
 
-        public string Name => name;
     }
 }

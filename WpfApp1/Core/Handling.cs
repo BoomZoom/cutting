@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    class Handling
-    {
-        private string name;
+    class Handling:TechnoligiItemBase
+    { private string name;
 
         //private double S;//подача
 
@@ -17,9 +16,9 @@ namespace Core
         private readonly double yp;
         private readonly double np;
 
-        public Handling(string name, double Cp, double Xp, double Yp, double Np)
+        public Handling(string name, double Cp, double Xp, double Yp, double Np):base(name)
         {
-            this.name = name;
+          
             this.cp = Cp;
             this.xp = Xp;
             this.yp = Yp;

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Core;
 using System.Windows.Input;
+using WpfApp1.DialogWindows;
 
 namespace WpfApp1
 {
@@ -38,17 +39,20 @@ namespace WpfApp1
             {
                 case "Matirial":
                     {
-                        System.Windows.Forms.MessageBox.Show("Matirial");
+                        AddMatirial addMatirial = new AddMatirial();
+                        addMatirial.ShowDialog();
                     }
                     break;
                 case "Tool":
                     {
-                        System.Windows.Forms.MessageBox.Show("Tool");
+                        AddTool addTool = new AddTool();
+                        addTool.ShowDialog();
                     }
                     break;
                 case "Handling":
                     {
-                        System.Windows.Forms.MessageBox.Show("Handling");
+                        AddHandling addHandling = new AddHandling();
+                        addHandling.ShowDialog();
                     }
                     break;
                 default:

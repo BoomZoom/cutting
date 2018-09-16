@@ -724,6 +724,13 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
+        
+        <!-- TextBlock -->
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10 0 10 0"/>
+        </Style>    
     </Application.Resources>
 </Application>

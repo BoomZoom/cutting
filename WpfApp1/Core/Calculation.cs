@@ -8,8 +8,7 @@ namespace Core
 {
     using static System.Math;
     class Calculation
-    {
-        
+    {        
         private Matirial matirial;//Материал
         private Tool tool;//Инструмент
         private Handling handling;//Вид обработки
