@@ -57,8 +57,10 @@ namespace Core
 
         public double Kmv { get => kmv; }
         public double Kpv { get => kpv; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
-
-    
-
 }

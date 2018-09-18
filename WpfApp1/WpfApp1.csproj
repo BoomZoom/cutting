@@ -66,6 +66,7 @@
     <Compile Include="DialogWindows\AddMatirial.xaml.cs">
       <DependentUpon>AddMatirial.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DialogWindows\AddMatirialVeiwModel.cs" />
     <Compile Include="DialogWindows\AddTool.xaml.cs">
       <DependentUpon>AddTool.xaml</DependentUpon>
     </Compile>

@@ -19,9 +19,10 @@ namespace WpfApp1.DialogWindows
     /// </summary>
     public partial class AddMatirial : Window
     {
-        public AddMatirial()
+        public AddMatirial(Action<object> action)
         {
             InitializeComponent();
+            DataContext = new AddMatirialVeiwModel(action);
         }
     }
 }

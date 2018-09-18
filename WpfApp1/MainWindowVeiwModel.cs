@@ -12,7 +12,6 @@ namespace WpfApp1
 {
     class MainWindowVeiwModel : VeiwModelBase
     {
-
         ObservableCollection<Matirial> matirials;
 
         private Comand comand;
@@ -34,13 +33,24 @@ namespace WpfApp1
             matirials = new ObservableCollection<Matirial>() { matirial };
         }
 
+        private void qwert(object obj)
+        {
+            System.Windows.Forms.MessageBox.Show("MainWindow");
+            if (obj is Matirial)
+            {
+                Matirial matirial = (Matirial)obj;
+                System.Windows.Forms.MessageBox.Show($" cv= {matirial.Cv} , xv={matirial.Xv}, yv={matirial.Yv},\n mv={matirial.Mv}, kmv={matirial.Kmv}, kpv={matirial.Kpv} ");
+                Matirials.Add(matirial);
+            }
+        }
+
         private void ChangeVeiw(object obj)
         {
             switch (obj.ToString())
             {
                 case "Matirial":
                     {
-                        AddMatirial addMatirial = new AddMatirial();
+                        AddMatirial addMatirial = new AddMatirial(qwert);
                         addMatirial.ShowDialog();
                     }
                     break;
