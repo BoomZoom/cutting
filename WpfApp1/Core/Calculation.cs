@@ -8,24 +8,24 @@ namespace Core
 {
     using static System.Math;
     class Calculation
-    {        
-        private Matirial matirial;  //Материал
-        private Tool tool;          //Инструмент
-        private Handling handling;  //Вид обработки
+    {
+        private Matirial matirial;                              //Материал
+        private Tool tool;                                      //Инструмент
+        private Handling handling;                              //Вид обработки
 
-        private Kv kv;              //Коэфициент Кv
+        private Kv kv;                                          //Коэфициент Кv
 
-        private double t;           //глубина резания
-        private double s;           //подача
-        private double d;           //диаметр заготовки
-        private double l;           //длина обрабатываемой поверхности
+        private double t_depthOfCut;                            //глубина резания
+        private double s_innings;                               //подача
+        private double d_billetDiameter;                        //диаметр заготовки
+        private double l_lengthOfTheSurfaceToBeTreated;         //длина обрабатываемой поверхности
 
-        private double n = 0;       //частота вращения шпинделя
-        private double V = 0;       //скорость резанья
-        private double Tm = 0;      //Машиное время
-        private double Pz = 0;      //усилие резания
+        private double n_spindleSpeed = 0;                      //частота вращения шпинделя
+        private double V_cuttingSpeed = 0;                      //скорость резанья
+        private double Tm_MachineTime = 0;                      //Машиное время
+        private double Pz_cuttingForce = 0;                     //усилие резания
 
-        private int Time;           //Время стойкости инструмента (мин)
+        private int Time;                                       //Время стойкости инструмента (мин)
 
         private Calculation(Matirial matirial, Tool tool, Handling handling)
         {
@@ -49,10 +49,10 @@ namespace Core
         /// <param name="T">Среднее значение стойкости (мин)</param>
         public Calculation(Matirial matirial, Tool tool, Handling handling, double t, double S, double D, double L, int T = 60) : this(matirial, tool, handling)
         {
-            this.t = t;
-            this.s = S;
-            this.d = D;
-            this.l = L;
+            this.t_depthOfCut = t;
+            this.s_innings = S;
+            this.d_billetDiameter = D;
+            this.l_lengthOfTheSurfaceToBeTreated = L;
 
             this.Time = T;
         }
@@ -62,7 +62,7 @@ namespace Core
         /// </summary>
         public double cuttingSpeed_V
         {
-            get => V != 0 ? V : V = matirial.Cv / (Pow(Time, matirial.Mv) * Pow(t, matirial.Xv) * Pow(s, matirial.Yv) * kv.getKv);
+            get => V_cuttingSpeed = matirial.Cv / (Pow(Time, matirial.Mv) * Pow(t_depthOfCut, matirial.Xv) * Pow(s_innings, matirial.Yv) * kv.getKv);
         }
 
 
@@ -71,12 +71,12 @@ namespace Core
         /// </summary>
         public double spindleSpeed_N
         {
-            get => n != 0 ? n : n = (1000 * cuttingSpeed_V) / (PI * d);
+            get => n_spindleSpeed = (1000 * cuttingSpeed_V) / (PI * d_billetDiameter);
         }
 
         public double SetTheActualSpeed
         {
-            set { n = value; V = 0; }
+            set { n_spindleSpeed = value; }
         }
 
         /// <summary>
@@ -84,18 +84,18 @@ namespace Core
         /// </summary>
         public double computerTime_Tm
         {
-            get => Tm != 0 ? Tm : Tm = (l + 2) / (spindleSpeed_N * s);
+            get => Tm_MachineTime = (l_lengthOfTheSurfaceToBeTreated + 2) / (spindleSpeed_N * s_innings);
         }
         /// <summary>
         /// Сила резанья (H)
         /// </summary>
         public double cuttingForce_Pz
         {
-            get => Pz != 0 ? Pz : Pz = 9.8 * handling.Cp * Pow(t, handling.Xp) * Pow(s, handling.Yp) * Pow(V, handling.Np) * 1;//TODO Сделать коэфициент Кp
+            get => Pz_cuttingForce = 9.8 * handling.Cp * Pow(t_depthOfCut, handling.Xp) * Pow(s_innings, handling.Yp) * Pow(V_cuttingSpeed, handling.Np) * 1;//TODO Сделать коэфициент Кp
         }
-        public double T { get => t; set => t = value; }
-        public double S { get => s; set => s = value; }
-        public double D { get => d; set => d = value; }
-        public double L { get => l; set => l = value; }
+        public double T_DepthOfCut { get => t_depthOfCut; set => t_depthOfCut = value; }
+        public double S_Innings { get => s_innings; set => s_innings = value; }
+        public double D_BilletDiameter { get => d_billetDiameter; set => d_billetDiameter = value; }
+        public double L_LengthOfTheSurfaceToBeTreated { get => l_lengthOfTheSurfaceToBeTreated; set => l_lengthOfTheSurfaceToBeTreated = value; }
     }
 }

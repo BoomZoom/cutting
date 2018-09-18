@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,8 @@ namespace WpfApp1
 {
     class MainWindowVeiwModel : VeiwModelBase
     {
+
+        ObservableCollection<Matirial> matirials;
 
         private Comand comand;
 
@@ -28,9 +31,7 @@ namespace WpfApp1
 
             comand = new Comand(ChangeVeiw);
 
-            //System.Windows.Forms.MessageBox.Show(calculation.cuttingSpeed_V.ToString());
-            //System.Windows.Forms.MessageBox.Show(calculation.spindleSpeed_N.ToString());
-            //System.Windows.Forms.MessageBox.Show(calculation.computerTime_Tm.ToString());
+            matirials = new ObservableCollection<Matirial>() { matirial };
         }
 
         private void ChangeVeiw(object obj)
@@ -59,11 +60,18 @@ namespace WpfApp1
                     throw new ArgumentException("неверный параметр выбора окна!");
             }
         }
+        private void UpdateAnswerAllPropertiesChanged()
+        {
+            OnPropertyChanged("CuttingSpeed");
+            OnPropertyChanged("SpindleSpeed");
+            OnPropertyChanged("ComputerTime");
+            OnPropertyChanged("CuttingForce");
+        }
 
         public ICommand ChangeVeiwCommand
         {
             get => comand;
-        }
+        }        
 
         public string CuttingSpeed
         {
@@ -82,33 +90,41 @@ namespace WpfApp1
             get { return "Pz = " + calculation.cuttingForce_Pz.ToString() + " H"; }
         }
 
-        public double T
+        public double T_DepthOfCut
         {
-            get => calculation.T;
+            get => calculation.T_DepthOfCut;
             set
             {
-                calculation.T = value;
-                //OnPropertyChanged("Matirial");
-                //TODO разобратся с биндингом
-
-                System.Windows.Forms.MessageBox.Show("Test");
+                calculation.T_DepthOfCut = value;               
+                UpdateAnswerAllPropertiesChanged();
             }
         }
-        public double L
+        public double S_Innings
         {
-            get => calculation.L;
-            set => calculation.L = value;
+            get => calculation.S_Innings;
+            set
+            {
+                calculation.S_Innings = value;
+                UpdateAnswerAllPropertiesChanged();
+            }
         }
-        public double S
+        public double L_LengthOfTheSurfaceToBeTreated
         {
-            get => calculation.S;
-            set => calculation.S = value;
-        }
-        public double D
+            get => calculation.L_LengthOfTheSurfaceToBeTreated;
+            set {
+                calculation.L_LengthOfTheSurfaceToBeTreated = value;
+                UpdateAnswerAllPropertiesChanged();
+            }
+        }      
+        public double D_BilletDiameter
         {
-            get => calculation.D;
-            set => calculation.D = value;
+            get => calculation.D_BilletDiameter;
+            set {
+                calculation.D_BilletDiameter = value;
+                UpdateAnswerAllPropertiesChanged();
+            }
         }
 
+        public ObservableCollection<Matirial> Matirials { get => matirials; set => matirials = value; }
     }
 }

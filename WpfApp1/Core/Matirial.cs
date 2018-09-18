@@ -26,6 +26,7 @@ namespace Core
     }
     class Matirial:TechnoligiItemBase
     {
+        // к сожалению это коэфициенты 
         private readonly double cv;
         private readonly double xv;
         private readonly double yv;

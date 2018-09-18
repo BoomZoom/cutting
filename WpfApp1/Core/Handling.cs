@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 namespace Core
 {
     class Handling:TechnoligiItemBase
-    { 
+    {
+        //Это не переводится, честно я искал это показатели степени для конкретных (расчетных)
+        //условийобработки для каждой из составляющих силы резания
+
         private readonly double cp;
         private readonly double xp;
         private readonly double yp;
