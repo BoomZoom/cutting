@@ -75,7 +75,7 @@ namespace WpfApp1
                     break;
                 case "Handling":
                     {
-                        AddHandling addHandling = new AddHandling();
+                        AddHandling addHandling = new AddHandling(AddItemListDialogDiligate);
                         addHandling.ShowDialog();
                     }
                     break;
@@ -171,6 +171,15 @@ namespace WpfApp1
             {
                 //System.Windows.Forms.MessageBox.Show("Test" + " " + value.Name.ToString()+" "+value.Kiv.ToString()); 
                 calculation.Tool = value;
+                UpdateAnswerAllPropertiesChanged();
+            }
+        }
+        public Handling MySelectedItemHandling
+        {
+            get { return calculation.Handling; }
+            set
+            {
+                calculation.Handling = value;
                 UpdateAnswerAllPropertiesChanged();
             }
         }

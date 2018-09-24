@@ -19,9 +19,10 @@ namespace WpfApp1.DialogWindows
     /// </summary>
     public partial class AddHandling : Window
     {
-        public AddHandling()
+        public AddHandling(Action<object> action)
         {
             InitializeComponent();
+            DataContext=new AddHandingVeiwModel(action);
         }
     }
 }
