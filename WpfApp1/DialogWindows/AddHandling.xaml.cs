@@ -22,7 +22,7 @@ namespace WpfApp1.DialogWindows
         public AddHandling(Action<object> action)
         {
             InitializeComponent();
-            DataContext=new AddHandingVeiwModel(action);
+            DataContext=new AddHandingViewModel(action);
         }
     }
 }

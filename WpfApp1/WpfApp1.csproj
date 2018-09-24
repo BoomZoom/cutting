@@ -55,8 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddHandingVeiwModel.cs" />
-    <Compile Include="AddToolVeiwModel.cs" />
+    <Compile Include="ViewModel\AddHandingViewModel.cs" />
+    <Compile Include="ViewModel\AddToolViewModel.cs" />
     <Compile Include="Comand.cs" />
     <Compile Include="Core\Calculation.cs" />
     <Compile Include="Core\Handling.cs" />
@@ -68,11 +68,11 @@
     <Compile Include="DialogWindows\AddMatirial.xaml.cs">
       <DependentUpon>AddMatirial.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DialogWindows\AddMatirialVeiwModel.cs" />
+    <Compile Include="ViewModel\AddMatirialViewModel.cs" />
     <Compile Include="DialogWindows\AddTool.xaml.cs">
       <DependentUpon>AddTool.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VeiwModelBase.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
     <Page Include="DialogWindows\AddHandling.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -99,7 +99,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainWindowVeiwModel.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Core\Matirial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -126,5 +126,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

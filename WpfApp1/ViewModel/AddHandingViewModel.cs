@@ -8,7 +8,7 @@ using Core;
 
 namespace WpfApp1
 {
-    class AddHandingVeiwModel : VeiwModelBase
+    class AddHandingViewModel : ViewModelBase
     {
         private string name;
         private double cp;
@@ -19,7 +19,7 @@ namespace WpfApp1
         private Comand comand;
         //TODO убрать object из action во всех класах этого типа
         private Action<object> action;
-        public AddHandingVeiwModel(Action<object> action)
+        public AddHandingViewModel(Action<object> action)
         {
             this.action = action;
             comand = new Comand(CreateHanding);

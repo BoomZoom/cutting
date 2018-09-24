@@ -11,7 +11,7 @@ using System.Windows.Controls;
 
 namespace WpfApp1
 {
-    class MainWindowVeiwModel : VeiwModelBase
+    class MainWindowViewModel : ViewModelBase
     {
         ObservableCollection<Matirial> matirials;
         ObservableCollection<Tool> tools;
@@ -26,7 +26,7 @@ namespace WpfApp1
 
         // private Matirial _mySelectedItem;
 
-        public MainWindowVeiwModel()
+        public MainWindowViewModel()
         {
             matirial = new Matirial("Бронза", 182, 0.12, 0.3, 0.23, 0.7, 0.9);
             tool = new Tool("ВК6", 2.7);

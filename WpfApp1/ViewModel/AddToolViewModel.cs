@@ -7,14 +7,14 @@ using System.Windows.Input;
 using Core;
 namespace WpfApp1
 {
-    class AddToolVeiwModel : VeiwModelBase
+    class AddToolViewModel : ViewModelBase
     {
         private Comand command;
         Action<object> action;
 
         private string name;
         private double kiv;
-        public AddToolVeiwModel(Action<object> action)
+        public AddToolViewModel(Action<object> action)
         {
             this.action = action;
             command = new Comand(CreateTool);

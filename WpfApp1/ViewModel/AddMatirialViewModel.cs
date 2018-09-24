@@ -5,9 +5,9 @@ using System.Text;
 using System.Windows.Input;
 using Core;
 
-namespace WpfApp1.DialogWindows
+namespace WpfApp1
 {
-    class AddMatirialVeiwModel:VeiwModelBase
+    class AddMatirialViewModel:ViewModelBase
     {
         private Comand comand;
         Action<object> action;
@@ -22,7 +22,7 @@ namespace WpfApp1.DialogWindows
         private double kmv;
         private double kpv;
 
-        public AddMatirialVeiwModel(Action<object> action)
+        public AddMatirialViewModel(Action<object> action)
         {
             this.action = action;
             comand = new Comand(CreateMatiriall);
