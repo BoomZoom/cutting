@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 using Core;
 using System.Windows.Input;
 using WpfApp1.DialogWindows;
+using System.Windows.Controls;
 
 namespace WpfApp1
 {
     class MainWindowVeiwModel : VeiwModelBase
     {
         ObservableCollection<Matirial> matirials;
+        ObservableCollection<Tool> tools;
+        ObservableCollection<Handling> handlings;
 
         private Comand comand;
 
@@ -20,6 +23,8 @@ namespace WpfApp1
         private Tool tool;
         private Handling handling;
         private Calculation calculation;
+
+        // private Matirial _mySelectedItem;
 
         public MainWindowVeiwModel()
         {
@@ -31,17 +36,25 @@ namespace WpfApp1
             comand = new Comand(ChangeVeiw);
 
             matirials = new ObservableCollection<Matirial>() { matirial };
+            tools = new ObservableCollection<Tool>() { tool };
+            handlings = new ObservableCollection<Handling>() { handling };
         }
 
-        private void qwert(object obj)
+        private void AddItemListDialogDiligate(object obj)
         {
-            System.Windows.Forms.MessageBox.Show("MainWindow");
+            //  System.Windows.Forms.MessageBox.Show("MainWindow");
             if (obj is Matirial)
             {
-                Matirial matirial = (Matirial)obj;
-                System.Windows.Forms.MessageBox.Show($" cv= {matirial.Cv} , xv={matirial.Xv}, yv={matirial.Yv},\n mv={matirial.Mv}, kmv={matirial.Kmv}, kpv={matirial.Kpv} ");
-                Matirials.Add(matirial);
+                // Matirial matirial = (Matirial)obj;
+                //System.Windows.Forms.MessageBox.Show($" cv= {matirial.Cv} , xv={matirial.Xv}, yv={matirial.Yv},\n mv={matirial.Mv}, kmv={matirial.Kmv}, kpv={matirial.Kpv} ");
+                Matirials.Add((Matirial)obj);
             }
+            if (obj is Tool)
+                Tools.Add((Tool)obj);
+            if (obj is Handling)
+                Handlings.Add((Handling)obj);
+
+            System.Windows.Forms.MessageBox.Show(obj.ToString());
         }
 
         private void ChangeVeiw(object obj)
@@ -50,13 +63,13 @@ namespace WpfApp1
             {
                 case "Matirial":
                     {
-                        AddMatirial addMatirial = new AddMatirial(qwert);
+                        AddMatirial addMatirial = new AddMatirial(AddItemListDialogDiligate);
                         addMatirial.ShowDialog();
                     }
                     break;
                 case "Tool":
                     {
-                        AddTool addTool = new AddTool();
+                        AddTool addTool = new AddTool(AddItemListDialogDiligate);
                         addTool.ShowDialog();
                     }
                     break;
@@ -81,7 +94,7 @@ namespace WpfApp1
         public ICommand ChangeVeiwCommand
         {
             get => comand;
-        }        
+        }
 
         public string CuttingSpeed
         {
@@ -105,7 +118,7 @@ namespace WpfApp1
             get => calculation.T_DepthOfCut;
             set
             {
-                calculation.T_DepthOfCut = value;               
+                calculation.T_DepthOfCut = value;
                 UpdateAnswerAllPropertiesChanged();
             }
         }
@@ -121,20 +134,45 @@ namespace WpfApp1
         public double L_LengthOfTheSurfaceToBeTreated
         {
             get => calculation.L_LengthOfTheSurfaceToBeTreated;
-            set {
+            set
+            {
                 calculation.L_LengthOfTheSurfaceToBeTreated = value;
                 UpdateAnswerAllPropertiesChanged();
             }
-        }      
+        }
         public double D_BilletDiameter
         {
             get => calculation.D_BilletDiameter;
-            set {
+            set
+            {
                 calculation.D_BilletDiameter = value;
                 UpdateAnswerAllPropertiesChanged();
             }
         }
 
         public ObservableCollection<Matirial> Matirials { get => matirials; set => matirials = value; }
+        public ObservableCollection<Tool> Tools { get => tools; set => tools = value; }
+        public ObservableCollection<Handling> Handlings { get => handlings; set => handlings = value; }
+
+        public Matirial MySelectedItemMatirial
+        {
+            get { return calculation.Matirial; }
+            set
+            {
+                calculation.Matirial = value;
+                UpdateAnswerAllPropertiesChanged();
+            }
+        }
+
+        public Tool MySelectedItemTool
+        {
+            get { return calculation.Tool; }
+            set
+            {
+                //System.Windows.Forms.MessageBox.Show("Test" + " " + value.Name.ToString()+" "+value.Kiv.ToString()); 
+                calculation.Tool = value;
+                UpdateAnswerAllPropertiesChanged();
+            }
+        }
     }
 }

@@ -19,9 +19,10 @@ namespace WpfApp1.DialogWindows
     /// </summary>
     public partial class AddTool : Window
     {
-        public AddTool()
+        public AddTool(Action<object> action)
         {
             InitializeComponent();
+            DataContext = new AddToolVeiwModel(action);
         }
     }
 }

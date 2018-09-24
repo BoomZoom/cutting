@@ -16,29 +16,15 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <!--<RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>-->
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Column="0" Grid.Row="0">Имя</TextBlock>
-        <TextBlock Grid.Column="0" Grid.Row="1">Kiv</TextBlock>
-        <!--<TextBlock Grid.Column="0" Grid.Row="2">Xv</TextBlock>
-        <TextBlock Grid.Column="0" Grid.Row="3">Yv</TextBlock>
-        <TextBlock Grid.Column="0" Grid.Row="4">Mv</TextBlock>
-        <TextBlock Grid.Column="0" Grid.Row="5">Kmv</TextBlock>
-        <TextBlock Grid.Column="0" Grid.Row="6">Kpv</TextBlock>-->
+        <TextBlock Grid.Column="0" Grid.Row="0" >Имя</TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="1" >Kiv</TextBlock>
+     
 
-        <TextBox Grid.Column="1" Grid.Row="0"></TextBox>
-        <TextBox Grid.Column="1" Grid.Row="1"></TextBox>
-        <!--<TextBox Grid.Column="1" Grid.Row="2"></TextBox>
-        <TextBox Grid.Column="1" Grid.Row="3"></TextBox>
-        <TextBox Grid.Column="1" Grid.Row="4"></TextBox>
-        <TextBox Grid.Column="1" Grid.Row="5"></TextBox>
-        <TextBox Grid.Column="1" Grid.Row="6"></TextBox>-->
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Name}"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=Kiv}"></TextBox>       
 
-        <Button Grid.Column="1" Grid.Row="2" Content="Add"/>
+        <Button Grid.Column="1" Grid.Row="2" Content="Add" Command="{Binding AddTool}"/>
     </Grid>
 </Window>

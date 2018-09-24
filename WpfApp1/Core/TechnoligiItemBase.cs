@@ -16,5 +16,10 @@ namespace Core
         }
 
         public string Name => name;
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

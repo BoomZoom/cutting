@@ -97,5 +97,9 @@ namespace Core
         public double S_Innings { get => s_innings; set => s_innings = value; }
         public double D_BilletDiameter { get => d_billetDiameter; set => d_billetDiameter = value; }
         public double L_LengthOfTheSurfaceToBeTreated { get => l_lengthOfTheSurfaceToBeTreated; set => l_lengthOfTheSurfaceToBeTreated = value; }
+
+        internal Matirial Matirial { get => matirial; set { matirial = value; kv.Kmv = value.Kmv; kv.Kpv = value.Kpv; } }
+        internal Tool Tool { get => tool; set { tool = value; kv.Kiv = value.Kiv; } }
+        internal Handling Handling { get => handling; set => handling = value; }
     }
 }

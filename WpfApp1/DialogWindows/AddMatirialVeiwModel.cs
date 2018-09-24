@@ -27,7 +27,7 @@ namespace WpfApp1.DialogWindows
             this.action = action;
             comand = new Comand(CreateMatiriall);
         }
-        private void CreateMatiriall(object obj)
+        private void CreateMatiriall(object NotUse)
         {
             try
             {

@@ -22,7 +22,9 @@ namespace Core
         {
             get => kpv * kmv * kiv;
         }
-
+        public double Kmv { get => kmv; set => kmv = value; }
+        public double Kpv { get => kpv; set => kpv = value; }
+        public double Kiv { get => kiv; set => kiv = value; }
     }
     class Matirial:TechnoligiItemBase
     {
@@ -58,9 +60,6 @@ namespace Core
         public double Kmv { get => kmv; }
         public double Kpv { get => kpv; }
 
-        public override string ToString()
-        {
-            return Name;
-        }
+       
     }
 }

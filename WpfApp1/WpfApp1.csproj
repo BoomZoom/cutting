@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddToolVeiwModel.cs" />
     <Compile Include="Comand.cs" />
     <Compile Include="Core\Calculation.cs" />
     <Compile Include="Core\Handling.cs" />
