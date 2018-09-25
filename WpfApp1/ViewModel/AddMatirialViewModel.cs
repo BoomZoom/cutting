@@ -9,7 +9,7 @@ namespace WpfApp1
 {
     class AddMatirialViewModel:ViewModelBase
     {
-        private Comand comand;
+        private Command comand;
         Action<object> action;
         
 
@@ -25,13 +25,13 @@ namespace WpfApp1
         public AddMatirialViewModel(Action<object> action)
         {
             this.action = action;
-            comand = new Comand(CreateMatiriall);
+            comand = new Command(CreateMatiriall);
         }
         private void CreateMatiriall(object NotUse)
         {
             try
             {
-                Matirial matirial = new Matirial(name, cv, xv, yv, mv, kmv, kpv);
+                Material matirial = new Material(name, cv, xv, yv, mv, kmv, kpv);
                 action(matirial);
             }
             catch (Exception ex)

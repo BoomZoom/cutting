@@ -9,7 +9,7 @@ namespace Core
     using static System.Math;
     class Calculation
     {
-        private Matirial matirial;                              //Материал
+        private Material matirial;                              //Материал
         private Tool tool;                                      //Инструмент
         private Handling handling;                              //Вид обработки
 
@@ -27,7 +27,7 @@ namespace Core
 
         private int Time;                                       //Время стойкости инструмента (мин)
 
-        private Calculation(Matirial matirial, Tool tool, Handling handling)
+        private Calculation(Material matirial, Tool tool, Handling handling)
         {
             this.matirial = matirial;
             this.tool = tool;
@@ -47,7 +47,7 @@ namespace Core
         /// <param name="D">Диаметр заготовки (мм)</param>
         /// <param name="L">Длина обрабатываемой поверхности (мм)</param>
         /// <param name="T">Среднее значение стойкости (мин)</param>
-        public Calculation(Matirial matirial, Tool tool, Handling handling, double t, double S, double D, double L, int T = 60) : this(matirial, tool, handling)
+        public Calculation(Material matirial, Tool tool, Handling handling, double t, double S, double D, double L, int T = 60) : this(matirial, tool, handling)
         {
             this.t_depthOfCut = t;
             this.s_innings = S;
@@ -98,7 +98,7 @@ namespace Core
         public double D_BilletDiameter { get => d_billetDiameter; set => d_billetDiameter = value; }
         public double L_LengthOfTheSurfaceToBeTreated { get => l_lengthOfTheSurfaceToBeTreated; set => l_lengthOfTheSurfaceToBeTreated = value; }
 
-        internal Matirial Matirial { get => matirial; set { matirial = value; kv.Kmv = value.Kmv; kv.Kpv = value.Kpv; } }
+        internal Material Matirial { get => matirial; set { matirial = value; kv.Kmv = value.Kmv; kv.Kpv = value.Kpv; } }
         internal Tool Tool { get => tool; set { tool = value; kv.Kiv = value.Kiv; } }
         internal Handling Handling { get => handling; set => handling = value; }
     }

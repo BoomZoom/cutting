@@ -9,7 +9,7 @@ namespace WpfApp1
 {
     class AddToolViewModel : ViewModelBase
     {
-        private Comand command;
+        private Command command;
         Action<object> action;
 
         private string name;
@@ -17,7 +17,7 @@ namespace WpfApp1
         public AddToolViewModel(Action<object> action)
         {
             this.action = action;
-            command = new Comand(CreateTool);
+            command = new Command(CreateTool);
         }
         public ICommand AddTool => command;
 

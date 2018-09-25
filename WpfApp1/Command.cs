@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 namespace WpfApp1
 {
-    class Comand : ICommand
+    class Command : ICommand
     {
         Action<object> action;
         public event EventHandler CanExecuteChanged;
 
-        public Comand(Action<object> action)
+        public Command(Action<object> action)
         {
             this.action = action;
         }

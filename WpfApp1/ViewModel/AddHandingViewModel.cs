@@ -16,13 +16,13 @@ namespace WpfApp1
         private double yp;
         private double np;
 
-        private Comand comand;
+        private Command comand;
         //TODO убрать object из action во всех класах этого типа
         private Action<object> action;
         public AddHandingViewModel(Action<object> action)
         {
             this.action = action;
-            comand = new Comand(CreateHanding);
+            comand = new Command(CreateHanding);
         }
 
         public ICommand AddHanding => comand;

@@ -26,40 +26,53 @@ namespace Core
         public double Kpv { get => kpv; set => kpv = value; }
         public double Kiv { get => kiv; set => kiv = value; }
     }
-    class Matirial:TechnoligiItemBase
+    [Serializable]
+    public class Material : TechnoligiItemBase
     {
         // к сожалению это коэфициенты 
-        private readonly double cv;
-        private readonly double xv;
-        private readonly double yv;
-        private readonly double mv;
+        //private double cv;
+        //private double xv;
+        //private double yv;
+        //private double mv;
 
-        private double kmv;
-        private double kpv;
+        //private double kmv;
+        //private double kpv;
 
-        public Matirial(string name, int Cv, double Xv, double Yv, double Mv, double Kmv, double Kpv):base(name)
+        public double Cv { get; set; }
+        public double Xv { get; set; }
+        public double Yv { get; set; }
+        public double Mv { get; set; }
+
+        public double Kmv { get; set; }
+        public double Kpv { get; set; }
+
+        public Material(string name, int Cv, double Xv, double Yv, double Mv, double Kmv, double Kpv) : base(name)
         {
-            cv = Cv;
-            xv = Xv;
-            yv = Yv;
-            mv = Mv;
+            this.Cv = Cv;
+            this.Xv = Xv;
+            this.Yv = Yv;
+            this.Mv = Mv;
 
-            kmv = Kmv;
-            kpv = Kpv;
+            this.Kmv = Kmv;
+            this.Kpv = Kpv;
         }
 
+        public Material()
+        {
 
-        public double Cv => cv;
+        }
 
-        public double Xv => xv;
+        //public double Cv => cv;
 
-        public double Yv => yv;
+        //public double Xv => xv;
 
-        public double Mv => mv;
+        //public double Yv => yv;
 
-        public double Kmv { get => kmv; }
-        public double Kpv { get => kpv; }
+        //public double Mv => mv;
 
-       
+        //public double Kmv { get => kmv; }
+        //public double Kpv { get => kpv; }
+
+
     }
 }

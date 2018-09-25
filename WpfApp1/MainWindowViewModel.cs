@@ -13,13 +13,13 @@ namespace WpfApp1
 {
     class MainWindowViewModel : ViewModelBase
     {
-        ObservableCollection<Matirial> matirials;
+        ObservableCollection<Material> matirials;
         ObservableCollection<Tool> tools;
         ObservableCollection<Handling> handlings;
 
-        private Comand comand;
+        private Command comand;
 
-        private Matirial matirial;
+        private Material matirial;
         private Tool tool;
         private Handling handling;
         private Calculation calculation;
@@ -28,26 +28,41 @@ namespace WpfApp1
 
         public MainWindowViewModel()
         {
-            matirial = new Matirial("Бронза", 182, 0.12, 0.3, 0.23, 0.7, 0.9);
+            matirial = new Material("Бронза", 182, 0.12, 0.3, 0.23, 0.7, 0.9);
             tool = new Tool("ВК6", 2.7);
             handling = new Handling("Точение", 55, 1, 0.66, 0);
             calculation = new Calculation(matirial, tool, handling, 4, 1, 95, 100);
 
-            comand = new Comand(ChangeVeiw);
+            comand = new Command(ChangeVeiw);
 
-            matirials = new ObservableCollection<Matirial>() { matirial };
+
+            matirials = new ObservableCollection<Material>();
             tools = new ObservableCollection<Tool>() { tool };
             handlings = new ObservableCollection<Handling>() { handling };
+
+            Serialization<Material> serialization = new Serialization<Material>(Matirials.ToList());
+            //serialization.Save();
+            //TODO удалить этот велосипед
+            var temp= serialization.Deserialization();
+            foreach (var item in temp)
+            {
+                matirials.Add(item);
+
+            }/////////////////////////////////////////
         }
+
+        
 
         private void AddItemListDialogDiligate(object obj)
         {
             //  System.Windows.Forms.MessageBox.Show("MainWindow");
-            if (obj is Matirial)
+            if (obj is Material)
             {
                 // Matirial matirial = (Matirial)obj;
                 //System.Windows.Forms.MessageBox.Show($" cv= {matirial.Cv} , xv={matirial.Xv}, yv={matirial.Yv},\n mv={matirial.Mv}, kmv={matirial.Kmv}, kpv={matirial.Kpv} ");
-                Matirials.Add((Matirial)obj);
+                Matirials.Add((Material)obj);
+                Serialization<Material> serialization = new Serialization<Material>(Matirials.ToList());
+                serialization.Save();
             }
             if (obj is Tool)
                 Tools.Add((Tool)obj);
@@ -150,11 +165,11 @@ namespace WpfApp1
             }
         }
 
-        public ObservableCollection<Matirial> Matirials { get => matirials; set => matirials = value; }
+        public ObservableCollection<Material> Matirials { get => matirials; set => matirials = value; }
         public ObservableCollection<Tool> Tools { get => tools; set => tools = value; }
         public ObservableCollection<Handling> Handlings { get => handlings; set => handlings = value; }
 
-        public Matirial MySelectedItemMatirial
+        public Material MySelectedItemMatirial
         {
             get { return calculation.Matirial; }
             set

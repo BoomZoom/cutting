@@ -55,9 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\Serialization.cs" />
     <Compile Include="ViewModel\AddHandingViewModel.cs" />
     <Compile Include="ViewModel\AddToolViewModel.cs" />
-    <Compile Include="Comand.cs" />
+    <Compile Include="Command.cs" />
     <Compile Include="Core\Calculation.cs" />
     <Compile Include="Core\Handling.cs" />
     <Compile Include="Core\TechnoligiItemBase.cs" />
@@ -100,7 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindowViewModel.cs" />
-    <Compile Include="Core\Matirial.cs" />
+    <Compile Include="Core\Material.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

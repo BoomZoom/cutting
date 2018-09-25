@@ -6,20 +6,26 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    class TechnoligiItemBase
+    [Serializable]
+    public class TechnoligiItemBase
     {
-        private readonly string name;
+        //private readonly string name;
 
+        public TechnoligiItemBase()
+        {
+
+        }
         public TechnoligiItemBase(string name)
         {
-            this.name = name;
+            this.Name = name;
         }
 
-        public string Name => name;
+        public string Name { get; set; }
 
         public override string ToString()
         {
             return Name;
         }
+
     }
 }
