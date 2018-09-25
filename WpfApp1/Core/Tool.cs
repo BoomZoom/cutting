@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core
 {
+    [Serializable]
     class Tool : TechnoligiItemBase
     {
         private double kiv;

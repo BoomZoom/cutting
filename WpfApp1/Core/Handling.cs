@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core
 {
+    [Serializable]
     class Handling:TechnoligiItemBase
     {
         //Это не переводится, честно я искал это показатели степени для конкретных (расчетных)

@@ -23,7 +23,9 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
+            var mainWindowViewModel = new MainWindowViewModel();
+            DataContext = mainWindowViewModel;
+            Closing += mainWindowViewModel.OnWindowClosing;
         }
        
     }

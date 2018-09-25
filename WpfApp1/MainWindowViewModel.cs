@@ -13,9 +13,9 @@ namespace WpfApp1
 {
     class MainWindowViewModel : ViewModelBase
     {
-        ObservableCollection<Material> matirials;
-        ObservableCollection<Tool> tools;
-        ObservableCollection<Handling> handlings;
+        private ObservableCollection<Material> matirials;
+        private ObservableCollection<Tool> tools;
+        private ObservableCollection<Handling> handlings;
 
         private Command comand;
 
@@ -36,22 +36,39 @@ namespace WpfApp1
             comand = new Command(ChangeVeiw);
 
 
-            matirials = new ObservableCollection<Material>();
+             Serialization<Material> serialization = new Serialization<Material>(new List<Material>());
+             matirials = new ObservableCollection<Material>(serialization.Deserialization());
+            /*Serialization.Deserialization<Material>(matirials.AsEnumerable());
+            Serialization.Deserialization<Material>( matirials.AsEnumerable());*/
             tools = new ObservableCollection<Tool>() { tool };
             handlings = new ObservableCollection<Handling>() { handling };
 
-            Serialization<Material> serialization = new Serialization<Material>(Matirials.ToList());
             //serialization.Save();
             //TODO удалить этот велосипед
-            var temp= serialization.Deserialization();
-            foreach (var item in temp)
-            {
-                matirials.Add(item);
+            //var temp= serialization.Deserialization();
+            //foreach (var item in temp)
+            //{
+            //    matirials.Add(item);
 
-            }/////////////////////////////////////////
+            //}/////////////////////////////////////////
+
         }
 
-        
+        //private void InitializeObservableCollection <T>(IEnumerable<T> var)
+        //{
+        //    var temp = serialization.Deserialization();
+        //    foreach (var item in temp)
+        //    {
+        //        matirials.Add(item);
+
+        //    }
+        //}
+        public void OnWindowClosing(object sender, EventArgs e)
+        {
+            // Handle closing logic, set e.Cancel as needed
+            System.Windows.Forms.MessageBox.Show("Closing");
+        }
+
 
         private void AddItemListDialogDiligate(object obj)
         {
@@ -126,6 +143,10 @@ namespace WpfApp1
         public string CuttingForce
         {
             get { return "Pz = " + calculation.cuttingForce_Pz.ToString() + " H"; }
+        }
+        public string Power
+        {
+            get { return "Nz = " + calculation.Power_Pz.ToString() + " Вт"; }
         }
 
         public double T_DepthOfCut

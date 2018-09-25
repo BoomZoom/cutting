@@ -239,6 +239,7 @@
             <TextBlock Padding="10" Text="{Binding Path=SpindleSpeed,Mode=OneWay}"/>
             <TextBlock Padding="10" Text="{Binding Path=ComputerTime,Mode=OneWay}"/>
             <TextBlock Padding="10" Text="{Binding Path= CuttingForce,Mode=OneWay}"/>
+            <TextBlock Padding="10" Text="{Binding Path= Power,Mode=OneWay}"/>
         </StackPanel>
     </Grid>
 </Window>
