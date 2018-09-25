@@ -36,8 +36,8 @@ namespace WpfApp1
             comand = new Command(ChangeVeiw);
 
 
-             Serialization<Material> serialization = new Serialization<Material>(new List<Material>());
-             matirials = new ObservableCollection<Material>(serialization.Deserialization());
+            // Serialization<Material> serialization = new Serialization<Material>(new List<Material>());
+             matirials = new ObservableCollection<Material>(Serialization<Material>.Deserialization());
             /*Serialization.Deserialization<Material>(matirials.AsEnumerable());
             Serialization.Deserialization<Material>( matirials.AsEnumerable());*/
             tools = new ObservableCollection<Tool>() { tool };
@@ -67,6 +67,9 @@ namespace WpfApp1
         {
             // Handle closing logic, set e.Cancel as needed
             System.Windows.Forms.MessageBox.Show("Closing");
+
+            Serialization<Material>.Save(matirials.ToList());
+           // Serialization<Tool>.Save<Tool>(tools.ToList());
         }
 
 
@@ -78,8 +81,8 @@ namespace WpfApp1
                 // Matirial matirial = (Matirial)obj;
                 //System.Windows.Forms.MessageBox.Show($" cv= {matirial.Cv} , xv={matirial.Xv}, yv={matirial.Yv},\n mv={matirial.Mv}, kmv={matirial.Kmv}, kpv={matirial.Kpv} ");
                 Matirials.Add((Material)obj);
-                Serialization<Material> serialization = new Serialization<Material>(Matirials.ToList());
-                serialization.Save();
+                //Serialization<Material> serialization = new Serialization<Material>(Matirials.ToList());
+                //serialization.Save();
             }
             if (obj is Tool)
                 Tools.Add((Tool)obj);
