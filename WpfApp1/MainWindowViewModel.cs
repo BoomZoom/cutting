@@ -34,8 +34,8 @@ namespace WpfApp1
             comand = new Command(ChangeVeiw);
 
             matirials = new ObservableCollection<Material>(Serialization<Material>.Deserialization());
-            tools = new ObservableCollection<Tool>() { tool };
-            handlings = new ObservableCollection<Handling>() { handling };
+            tools = new ObservableCollection<Tool>(Serialization<Tool>.Deserialization());
+            handlings = new ObservableCollection<Handling> ( Serialization<Handling>.Deserialization());
         }
 
 
@@ -44,6 +44,8 @@ namespace WpfApp1
             System.Windows.Forms.MessageBox.Show("Closing");
 
             Serialization<Material>.Save(matirials.ToList());
+            Serialization<Tool>.Save(tools.ToList());
+            Serialization<Handling>.Save(handlings.ToList());
         }
 
 

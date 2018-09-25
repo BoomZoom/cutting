@@ -7,32 +7,36 @@ using System.Threading.Tasks;
 namespace Core
 {
     [Serializable]
-    class Handling:TechnoligiItemBase
+   public class Handling:TechnoligiItemBase
     {
         //Это не переводится, честно я искал это показатели степени для конкретных (расчетных)
         //условийобработки для каждой из составляющих силы резания
 
-        private readonly double cp;
-        private readonly double xp;
-        private readonly double yp;
-        private readonly double np;
+        //private readonly double cp;
+        //private readonly double xp;
+        //private readonly double yp;
+        //private readonly double np;
+
+        public Handling()
+        {
+
+        }
 
         public Handling(string name, double Cp, double Xp, double Yp, double Np):base(name)
         {
           
-            this.cp = Cp;
-            this.xp = Xp;
-            this.yp = Yp;
-            this.np = Np;
+            this.Cp = Cp;
+            this.Xp = Xp;
+            this.Yp = Yp;
+            this.Np = Np;
         }
 
-        public double Cp => cp;
+        public double Cp { get; set; }
+        public double Xp { get; set; }
 
-        public double Xp => xp;
+        public double Yp { get; set; }
 
-        public double Yp => yp;
-
-        public double Np => np;
+        public double Np { get; set; }
 
     }
 }

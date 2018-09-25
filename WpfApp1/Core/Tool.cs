@@ -7,16 +7,18 @@ using System.Threading.Tasks;
 namespace Core
 {
     [Serializable]
-    class Tool : TechnoligiItemBase
+    public class Tool : TechnoligiItemBase
     {
-        private double kiv;
+        public Tool()
+        {
 
+        }
         public Tool(string name, double Kiv) : base(name)
         {
-            this.kiv = Kiv;
+            this.Kiv = Kiv;
         }
 
-        public double Kiv { get => kiv; }
+        public double Kiv { get; set; }
 
     }
 }
