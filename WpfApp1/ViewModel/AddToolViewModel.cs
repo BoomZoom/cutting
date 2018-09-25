@@ -27,14 +27,12 @@ namespace WpfApp1
         private void CreateTool(object NotUse)
         {
             try
-            {
-                //System.Windows.Forms.MessageBox.Show(name+Kiv);
+            {              
                 action(new Tool(name, kiv));
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-                //System.Windows.Forms.MessageBox.Show(ex.StackTrace);
+                System.Windows.Forms.MessageBox.Show(ex.Message);                
             }
         }
 

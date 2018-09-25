@@ -29,15 +29,7 @@ namespace Core
     [Serializable]
     public class Material : TechnoligiItemBase
     {
-        // к сожалению это коэфициенты 
-        //private double cv;
-        //private double xv;
-        //private double yv;
-        //private double mv;
-
-        //private double kmv;
-        //private double kpv;
-
+       
         public double Cv { get; set; }
         public double Xv { get; set; }
         public double Yv { get; set; }
@@ -61,18 +53,6 @@ namespace Core
         {
 
         }
-
-        //public double Cv => cv;
-
-        //public double Xv => xv;
-
-        //public double Yv => yv;
-
-        //public double Mv => mv;
-
-        //public double Kmv { get => kmv; }
-        //public double Kpv { get => kpv; }
-
 
     }
 }

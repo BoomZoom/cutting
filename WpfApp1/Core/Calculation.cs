@@ -73,7 +73,7 @@ namespace Core
         {
             get => n_spindleSpeed = (1000 * cuttingSpeed_V) / (PI * d_billetDiameter);
         }
-        //----------------------------------------
+      
         /// <summary>
         /// мощность
         /// </summary>
@@ -81,8 +81,7 @@ namespace Core
         {
             get => cuttingSpeed_V / 60 * cuttingForce_Pz;
         }
-        //----------------------------------------
-        public double SetTheActualSpeed
+               public double SetTheActualSpeed
         {
             set { n_spindleSpeed = value; }
         }

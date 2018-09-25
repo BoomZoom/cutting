@@ -24,8 +24,6 @@ namespace WpfApp1
         private Handling handling;
         private Calculation calculation;
 
-        // private Matirial _mySelectedItem;
-
         public MainWindowViewModel()
         {
             matirial = new Material("Бронза", 182, 0.12, 0.3, 0.23, 0.7, 0.9);
@@ -35,54 +33,25 @@ namespace WpfApp1
 
             comand = new Command(ChangeVeiw);
 
-
-            // Serialization<Material> serialization = new Serialization<Material>(new List<Material>());
-             matirials = new ObservableCollection<Material>(Serialization<Material>.Deserialization());
-            /*Serialization.Deserialization<Material>(matirials.AsEnumerable());
-            Serialization.Deserialization<Material>( matirials.AsEnumerable());*/
+            matirials = new ObservableCollection<Material>(Serialization<Material>.Deserialization());
             tools = new ObservableCollection<Tool>() { tool };
             handlings = new ObservableCollection<Handling>() { handling };
-
-            //serialization.Save();
-            //TODO удалить этот велосипед
-            //var temp= serialization.Deserialization();
-            //foreach (var item in temp)
-            //{
-            //    matirials.Add(item);
-
-            //}/////////////////////////////////////////
-
         }
 
-        //private void InitializeObservableCollection <T>(IEnumerable<T> var)
-        //{
-        //    var temp = serialization.Deserialization();
-        //    foreach (var item in temp)
-        //    {
-        //        matirials.Add(item);
 
-        //    }
-        //}
         public void OnWindowClosing(object sender, EventArgs e)
         {
-            // Handle closing logic, set e.Cancel as needed
             System.Windows.Forms.MessageBox.Show("Closing");
 
             Serialization<Material>.Save(matirials.ToList());
-           // Serialization<Tool>.Save<Tool>(tools.ToList());
         }
 
 
         private void AddItemListDialogDiligate(object obj)
         {
-            //  System.Windows.Forms.MessageBox.Show("MainWindow");
             if (obj is Material)
             {
-                // Matirial matirial = (Matirial)obj;
-                //System.Windows.Forms.MessageBox.Show($" cv= {matirial.Cv} , xv={matirial.Xv}, yv={matirial.Yv},\n mv={matirial.Mv}, kmv={matirial.Kmv}, kpv={matirial.Kpv} ");
                 Matirials.Add((Material)obj);
-                //Serialization<Material> serialization = new Serialization<Material>(Matirials.ToList());
-                //serialization.Save();
             }
             if (obj is Tool)
                 Tools.Add((Tool)obj);
@@ -208,7 +177,6 @@ namespace WpfApp1
             get { return calculation.Tool; }
             set
             {
-                //System.Windows.Forms.MessageBox.Show("Test" + " " + value.Name.ToString()+" "+value.Kiv.ToString()); 
                 calculation.Tool = value;
                 UpdateAnswerAllPropertiesChanged();
             }

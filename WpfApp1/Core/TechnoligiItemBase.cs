@@ -9,8 +9,6 @@ namespace Core
     [Serializable]
     public class TechnoligiItemBase
     {
-        //private readonly string name;
-
         public TechnoligiItemBase()
         {
 
