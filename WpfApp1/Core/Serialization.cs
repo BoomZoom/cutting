@@ -11,9 +11,9 @@ namespace Core
 {
     class Serialization<T>
     {       
-        static public void Save(List<T> ColectionList)
+        static public void Save(IEnumerable<T> ColectionList)
         {
-            XmlSerializer formatter = new XmlSerializer(typeof(int));
+            XmlSerializer formatter =null;
             try
             {
                 formatter = new XmlSerializer(typeof(List<T>));
@@ -24,13 +24,13 @@ namespace Core
             }
             using (FileStream fs = new FileStream(typeof(T).Name + "s.xml", FileMode.OpenOrCreate))
             {
-                formatter.Serialize(fs, ColectionList);
+                formatter?.Serialize(fs, ColectionList.ToList());
             }
         }
 
         static public List<T> Deserialization()
         {
-            XmlSerializer formatter = new XmlSerializer(typeof(int));
+            XmlSerializer formatter = null;
             try
             {
                 formatter = new XmlSerializer(typeof(List<T>));
@@ -44,7 +44,7 @@ namespace Core
                 List<T> temp = new List<T>();
                 try
                 {
-                    temp = (List<T>)formatter.Deserialize(fs);
+                    temp = (List<T>)formatter?.Deserialize(fs);
                 }
                 catch (Exception ex)
                 {

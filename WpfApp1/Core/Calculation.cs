@@ -9,7 +9,7 @@ namespace Core
     using static System.Math;
     class Calculation
     {
-        private Material matirial;                              //Материал
+        private Material material;                              //Материал
         private Tool tool;                                      //Инструмент
         private Handling handling;                              //Вид обработки
 
@@ -27,13 +27,13 @@ namespace Core
 
         private int Time;                                       //Время стойкости инструмента (мин)
 
-        private Calculation(Material matirial, Tool tool, Handling handling)
+        private Calculation(Material material, Tool tool, Handling handling)
         {
-            this.matirial = matirial;
+            this.material = material;
             this.tool = tool;
             this.handling = handling;
 
-            kv = new Kv(this.matirial.Kmv, this.matirial.Kpv, tool.Kiv);
+            kv = new Kv(this.material.Kmv, this.material.Kpv, tool.Kiv);
         }
 
         /// <summary>
@@ -60,18 +60,18 @@ namespace Core
         /// <summary>
         /// Скорость резания(м/мин)
         /// </summary>
-        public double cuttingSpeed_V
+        public double CuttingSpeed_V
         {
-            get => V_cuttingSpeed = matirial.Cv / (Pow(Time, matirial.Mv) * Pow(t_depthOfCut, matirial.Xv) * Pow(s_innings, matirial.Yv) * kv.getKv);
+            get => V_cuttingSpeed = material.Cv / (Pow(Time, material.Mv) * Pow(t_depthOfCut, material.Xv) * Pow(s_innings, material.Yv) * kv.getKv);
         }
 
 
         /// <summary>
         /// Частота вашения шпинделя (об/мин)
         /// </summary>
-        public double spindleSpeed_N
+        public double SpindleSpeed_N
         {
-            get => n_spindleSpeed = (1000 * cuttingSpeed_V) / (PI * d_billetDiameter);
+            get => n_spindleSpeed = (1000 * CuttingSpeed_V) / (PI * d_billetDiameter);
         }
       
         /// <summary>
@@ -79,7 +79,7 @@ namespace Core
         /// </summary>
         public double Power_Pz
         {
-            get => cuttingSpeed_V / 60 * cuttingForce_Pz;
+            get => CuttingSpeed_V / 60 * CuttingForce_Pz;
         }
                public double SetTheActualSpeed
         {
@@ -89,14 +89,14 @@ namespace Core
         /// <summary>
         /// Машиное время (мин)
         /// </summary>
-        public double computerTime_Tm
+        public double ComputerTime_Tm
         {
-            get => Tm_MachineTime = (l_lengthOfTheSurfaceToBeTreated + 2) / (spindleSpeed_N * s_innings);
+            get => Tm_MachineTime = (l_lengthOfTheSurfaceToBeTreated + 2) / (SpindleSpeed_N * s_innings);
         }
         /// <summary>
         /// Сила резанья (H)
         /// </summary>
-        public double cuttingForce_Pz
+        public double CuttingForce_Pz
         {
             get => Pz_cuttingForce = 9.8 * handling.Cp * Pow(t_depthOfCut, handling.Xp) * Pow(s_innings, handling.Yp) * Pow(V_cuttingSpeed, handling.Np) * 1;//TODO Сделать коэфициент Кp
         }
@@ -105,7 +105,7 @@ namespace Core
         public double D_BilletDiameter { get => d_billetDiameter; set => d_billetDiameter = value; }
         public double L_LengthOfTheSurfaceToBeTreated { get => l_lengthOfTheSurfaceToBeTreated; set => l_lengthOfTheSurfaceToBeTreated = value; }
 
-        internal Material Matirial { get => matirial; set { matirial = value; kv.Kmv = value.Kmv; kv.Kpv = value.Kpv; } }
+        internal Material Material { get => material; set { material = value; kv.Kmv = value.Kmv; kv.Kpv = value.Kpv; } }
         internal Tool Tool { get => tool; set { tool = value; kv.Kiv = value.Kiv; } }
         internal Handling Handling { get => handling; set => handling = value; }
     }

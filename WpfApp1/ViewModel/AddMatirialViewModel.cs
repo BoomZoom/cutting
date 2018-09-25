@@ -10,8 +10,7 @@ namespace WpfApp1
     class AddMatirialViewModel:ViewModelBase
     {
         private Command comand;
-        Action<object> action;
-        
+        Action<object> action;        
 
         private string name;
         private int cv;

@@ -13,7 +13,7 @@ namespace WpfApp1
 {
     class MainWindowViewModel : ViewModelBase
     {
-        private ObservableCollection<Material> matirials;
+        private ObservableCollection<Material> materials;
         private ObservableCollection<Tool> tools;
         private ObservableCollection<Handling> handlings;
 
@@ -33,7 +33,7 @@ namespace WpfApp1
 
             comand = new Command(ChangeVeiw);
 
-            matirials = new ObservableCollection<Material>(Serialization<Material>.Deserialization());
+            materials = new ObservableCollection<Material>(Serialization<Material>.Deserialization());
             tools = new ObservableCollection<Tool>(Serialization<Tool>.Deserialization());
             handlings = new ObservableCollection<Handling> ( Serialization<Handling>.Deserialization());
         }
@@ -41,11 +41,9 @@ namespace WpfApp1
 
         public void OnWindowClosing(object sender, EventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("Closing");
-
-            Serialization<Material>.Save(matirials.ToList());
-            Serialization<Tool>.Save(tools.ToList());
-            Serialization<Handling>.Save(handlings.ToList());
+            Serialization<Material>.Save(materials);
+            Serialization<Tool>.Save(tools);
+            Serialization<Handling>.Save(handlings);
         }
 
 
@@ -53,7 +51,7 @@ namespace WpfApp1
         {
             if (obj is Material)
             {
-                Matirials.Add((Material)obj);
+                Materials.Add((Material)obj);
             }
             if (obj is Tool)
                 Tools.Add((Tool)obj);
@@ -104,19 +102,19 @@ namespace WpfApp1
 
         public string CuttingSpeed
         {
-            get { return "V = " + calculation.cuttingSpeed_V.ToString() + " м/мин"; }
+            get { return "V = " + calculation.CuttingSpeed_V.ToString() + " м/мин"; }
         }
         public string SpindleSpeed
         {
-            get { return "n = " + calculation.spindleSpeed_N.ToString() + " об/мин"; }
+            get { return "n = " + calculation.SpindleSpeed_N.ToString() + " об/мин"; }
         }
         public string ComputerTime
         {
-            get { return "Tm = " + calculation.computerTime_Tm.ToString() + " мин"; }
+            get { return "Tm = " + calculation.ComputerTime_Tm.ToString() + " мин"; }
         }
         public string CuttingForce
         {
-            get { return "Pz = " + calculation.cuttingForce_Pz.ToString() + " H"; }
+            get { return "Pz = " + calculation.CuttingForce_Pz.ToString() + " H"; }
         }
         public string Power
         {
@@ -160,16 +158,16 @@ namespace WpfApp1
             }
         }
 
-        public ObservableCollection<Material> Matirials { get => matirials; set => matirials = value; }
+        public ObservableCollection<Material> Materials { get => materials; set => materials = value; }
         public ObservableCollection<Tool> Tools { get => tools; set => tools = value; }
         public ObservableCollection<Handling> Handlings { get => handlings; set => handlings = value; }
 
         public Material MySelectedItemMatirial
         {
-            get { return calculation.Matirial; }
+            get { return calculation.Material; }
             set
             {
-                calculation.Matirial = value;
+                calculation.Material = value;
                 UpdateAnswerAllPropertiesChanged();
             }
         }
