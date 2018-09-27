@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+//using System.Math.;
 namespace Core
 {
-    using static System.Math;
+    
     class Calculation
     {
         private Material material;                              //Материал
@@ -62,7 +62,7 @@ namespace Core
         /// </summary>
         public double CuttingSpeed_V
         {
-            get => V_cuttingSpeed = material.Cv / (Pow(Time, material.Mv) * Pow(t_depthOfCut, material.Xv) * Pow(s_innings, material.Yv) * kv.getKv);
+            get { return V_cuttingSpeed = material.Cv / (System.Math.Pow(Time, material.Mv) * System.Math.Pow(t_depthOfCut, material.Xv) * System.Math.Pow(s_innings, material.Yv) * kv.getKv); }
         }
 
 
@@ -71,7 +71,7 @@ namespace Core
         /// </summary>
         public double SpindleSpeed_N
         {
-            get => n_spindleSpeed = (1000 * CuttingSpeed_V) / (PI * d_billetDiameter);
+            get { return n_spindleSpeed = (1000 * CuttingSpeed_V) / (System.Math.PI * d_billetDiameter); }
         }
       
         /// <summary>
@@ -79,7 +79,7 @@ namespace Core
         /// </summary>
         public double Power_Pz
         {
-            get => CuttingSpeed_V / 60 * CuttingForce_Pz;
+            get {return CuttingSpeed_V / 60 * CuttingForce_Pz;}
         }
                public double SetTheActualSpeed
         {
@@ -91,22 +91,25 @@ namespace Core
         /// </summary>
         public double ComputerTime_Tm
         {
-            get => Tm_MachineTime = (l_lengthOfTheSurfaceToBeTreated + 2) / (SpindleSpeed_N * s_innings);
+            get {return Tm_MachineTime = (l_lengthOfTheSurfaceToBeTreated + 2) / (SpindleSpeed_N * s_innings);}
         }
         /// <summary>
         /// Сила резанья (H)
         /// </summary>
         public double CuttingForce_Pz
         {
-            get => Pz_cuttingForce = 9.8 * handling.Cp * Pow(t_depthOfCut, handling.Xp) * Pow(s_innings, handling.Yp) * Pow(V_cuttingSpeed, handling.Np) * 1;//TODO Сделать коэфициент Кp
+            get { return Pz_cuttingForce = 9.8 * handling.Cp * 
+                System.Math.Pow(t_depthOfCut, handling.Xp) * 
+                System.Math.Pow(s_innings, handling.Yp) * 
+                System.Math.Pow(V_cuttingSpeed, handling.Np) * 1; }//TODO Сделать коэфициент Кp
         }
-        public double T_DepthOfCut { get => t_depthOfCut; set => t_depthOfCut = value; }
-        public double S_Innings { get => s_innings; set => s_innings = value; }
-        public double D_BilletDiameter { get => d_billetDiameter; set => d_billetDiameter = value; }
-        public double L_LengthOfTheSurfaceToBeTreated { get => l_lengthOfTheSurfaceToBeTreated; set => l_lengthOfTheSurfaceToBeTreated = value; }
+        public double T_DepthOfCut { get {return t_depthOfCut; }set { t_depthOfCut = value;} }
+        public double S_Innings { get {return s_innings;} set { s_innings = value;} }
+        public double D_BilletDiameter { get {return d_billetDiameter;} set { d_billetDiameter = value;} }
+        public double L_LengthOfTheSurfaceToBeTreated { get {return l_lengthOfTheSurfaceToBeTreated;} set { l_lengthOfTheSurfaceToBeTreated = value;} }
 
-        internal Material Material { get => material; set { material = value; kv.Kmv = value.Kmv; kv.Kpv = value.Kpv; } }
-        internal Tool Tool { get => tool; set { tool = value; kv.Kiv = value.Kiv; } }
-        internal Handling Handling { get => handling; set => handling = value; }
+        internal Material Material { get {return material;} set { material = value; kv.Kmv = value.Kmv; kv.Kpv = value.Kpv; } }
+        internal Tool Tool { get {return tool;} set { tool = value; kv.Kiv = value.Kiv; } }
+        internal Handling Handling { get { return handling; } set { handling = value; } }
     }
 }

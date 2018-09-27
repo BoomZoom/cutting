@@ -11,7 +11,7 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="Margin" Value="10 0 10 0"/>
-            <Setter Property="Command" Value="{Binding ChangeVeiwCommand}"/>
+            <Setter Property="Command" Value="{Binding ChangeViewCommand}"/>
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="FontWeight" Value="Black"/>
             <Setter Property="Content" Value="+"/>
@@ -177,7 +177,7 @@
             <Setter Property="FontWeight" Value="DemiBold"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontStyle" Value="Italic"/>
-            
+
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
     </Window.Resources>
@@ -185,6 +185,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition/>
+            <!-- колонка используется для выесжающего меню -->
+            <ColumnDefinition Width="0"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -209,7 +211,7 @@
             <TextBlock Grid.Row="1" ToolTip="Подача"> S =</TextBlock>
             <TextBlock Grid.Row="2" ToolTip="Длина обрабатываемой поверхности"> L =</TextBlock>
             <TextBlock Grid.Row="3" ToolTip="Диаметр заготовки"> D =</TextBlock>
-            
+
             <DockPanel Grid.Row="4">
                 <TextBlock ToolTip="Выбор Материала">Материал</TextBlock>
                 <Button CommandParameter="Matirial" Style="{StaticResource ButtonPlus}" DockPanel.Dock="Right"/>
@@ -224,14 +226,58 @@
             </DockPanel>
             <!--            Columns 1                -->
 
+
+
             <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=T_DepthOfCut,Mode=TwoWay}"></TextBox>
             <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=S_Innings,Mode=TwoWay}"></TextBox>
             <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Path=L_LengthOfTheSurfaceToBeTreated,Mode=TwoWay}"></TextBox>
             <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Path=D_BilletDiameter,Mode=TwoWay}"></TextBox>
-            <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding Path=Matirials,Mode=OneWay}" SelectedItem="{Binding MySelectedItemMatirial}"/>
+            <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding Path=Materials,Mode=OneWay}" SelectedItem="{Binding MySelectedItemMaterial}"/>
             <ComboBox Grid.Column="1" Grid.Row="5" ItemsSource="{Binding Path=Tools,Mode=OneWay}" SelectedItem="{Binding MySelectedItemTool}"/>
             <ComboBox Grid.Column="1" Grid.Row="6" ItemsSource="{Binding Path=Handlings,Mode=OneWay}" SelectedItem="{Binding MySelectedItemHandling}"></ComboBox>
 
+        </Grid>
+
+        <Grid Background="Gray" x:Name="stackPanel" Grid.Row="0" Panel.ZIndex="10000" Grid.Column="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0" />
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ToggleButton Grid.Column="0" Margin="-30,0,0,0" Padding="0,0,0,0" HorizontalContentAlignment="Stretch"  >
+                <TextBlock Text="Button 1" FontSize="16" Padding="0,0,0,0">
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="-90"/>
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+                <ToggleButton.Triggers>
+                    <EventTrigger RoutedEvent="ToggleButton.Checked">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ThicknessAnimation               
+                                To="-200,0,0,0"
+                                Duration="0:0:1"
+                                Storyboard.TargetProperty="Margin"
+                                    Storyboard.TargetName="stackPanel"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ThicknessAnimation
+                                To="0,0,0,0"
+                                Duration="0:0:1"
+                                Storyboard.TargetProperty="Margin" 
+                                     Storyboard.TargetName="stackPanel"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </ToggleButton.Triggers>
+            </ToggleButton>
+            <Button Grid.Column="1">
+
+            </Button>
         </Grid>
 
         <StackPanel Grid.Column="1" Grid.Row="1" Margin="10" Background="Bisque">

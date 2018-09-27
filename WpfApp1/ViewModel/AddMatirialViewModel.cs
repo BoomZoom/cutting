@@ -7,10 +7,10 @@ using Core;
 
 namespace WpfApp1
 {
-    class AddMatirialViewModel:ViewModelBase
+    class AddMatirialViewModel : ViewModelBase
     {
         private Command comand;
-        Action<object> action;        
+        Action<object> action;
 
         private string name;
         private int cv;
@@ -40,14 +40,14 @@ namespace WpfApp1
         }
         public ICommand AddMatirial
         {
-            get => comand;
+            get { return comand; }
         }
-        public string Name { get => name; set { name = value; } }
-        public int Cv { get => cv; set => cv = value; }
-        public double Xv { get => xv; set => xv = value; }
-        public double Yv { get => yv; set => yv = value; }
-        public double Mv { get => mv; set => mv = value; }
-        public double Kmv { get => kmv; set => kmv = value; }
-        public double Kpv { get => kpv; set => kpv = value; }
+        public string Name { get { return name; } set { name = value; } }
+        public int Cv { get { return cv; } set { cv = value; } }
+        public double Xv { get { return xv; } set { xv = value; } }
+        public double Yv { get { return yv; } set { yv = value; } }
+        public double Mv { get { return mv; } set { mv = value; } }
+        public double Kmv { get { return kmv; } set { kmv = value; } }
+        public double Kpv { get { return kpv; } set { kpv = value; } }
     }
 }

@@ -19,10 +19,10 @@ namespace WpfApp1
             this.action = action;
             command = new Command(CreateTool);
         }
-        public ICommand AddTool => command;
+        public ICommand AddTool {get { return command;}}
 
-        public string Name { get => name; set => name = value; }
-        public double Kiv { get => kiv; set => kiv = value; }
+        public string Name { get {return name;} set { name = value;} }
+        public double Kiv { get { return kiv; } set { kiv = value; } }
 
         private void CreateTool(object NotUse)
         {

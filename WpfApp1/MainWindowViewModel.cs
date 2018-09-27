@@ -95,9 +95,9 @@ namespace WpfApp1
             OnPropertyChanged("CuttingForce");
         }
 
-        public ICommand ChangeVeiwCommand
+        public ICommand ChangeViewCommand
         {
-            get => comand;
+            get {return comand;}
         }
 
         public string CuttingSpeed
@@ -123,7 +123,7 @@ namespace WpfApp1
 
         public double T_DepthOfCut
         {
-            get => calculation.T_DepthOfCut;
+            get {return calculation.T_DepthOfCut;}
             set
             {
                 calculation.T_DepthOfCut = value;
@@ -132,7 +132,7 @@ namespace WpfApp1
         }
         public double S_Innings
         {
-            get => calculation.S_Innings;
+            get {return calculation.S_Innings;}
             set
             {
                 calculation.S_Innings = value;
@@ -141,7 +141,7 @@ namespace WpfApp1
         }
         public double L_LengthOfTheSurfaceToBeTreated
         {
-            get => calculation.L_LengthOfTheSurfaceToBeTreated;
+            get {return calculation.L_LengthOfTheSurfaceToBeTreated;}
             set
             {
                 calculation.L_LengthOfTheSurfaceToBeTreated = value;
@@ -150,7 +150,7 @@ namespace WpfApp1
         }
         public double D_BilletDiameter
         {
-            get => calculation.D_BilletDiameter;
+            get {return calculation.D_BilletDiameter;}
             set
             {
                 calculation.D_BilletDiameter = value;
@@ -158,9 +158,11 @@ namespace WpfApp1
             }
         }
 
-        public ObservableCollection<Material> Materials { get => materials; set => materials = value; }
-        public ObservableCollection<Tool> Tools { get => tools; set => tools = value; }
-        public ObservableCollection<Handling> Handlings { get => handlings; set => handlings = value; }
+        public ObservableCollection<Material> Materials {
+            get { return materials; } 
+            set { materials = value; } }
+        public ObservableCollection<Tool> Tools          { get {return tools;}      set { tools = value;} }
+        public ObservableCollection<Handling> Handlings  { get {return handlings;}  set { handlings = value;} }
 
         public Material MySelectedItemMatirial
         {

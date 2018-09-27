@@ -10,10 +10,10 @@ using System.Collections.ObjectModel;
 namespace Core
 {
     class Serialization<T>
-    {       
+    {
         static public void Save(IEnumerable<T> ColectionList)
         {
-            XmlSerializer formatter =null;
+            XmlSerializer formatter = null;
             try
             {
                 formatter = new XmlSerializer(typeof(List<T>));
@@ -24,7 +24,10 @@ namespace Core
             }
             using (FileStream fs = new FileStream(typeof(T).Name + "s.xml", FileMode.OpenOrCreate))
             {
-                formatter?.Serialize(fs, ColectionList.ToList());
+                if (formatter != null)
+                {
+                    formatter.Serialize(fs, ColectionList.ToList());
+                }
             }
         }
 
@@ -44,7 +47,11 @@ namespace Core
                 List<T> temp = new List<T>();
                 try
                 {
-                    temp = (List<T>)formatter?.Deserialize(fs);
+                    if (formatter != null)
+                    {
+                        temp = (List<T>)formatter.Deserialize(fs);
+                    }
+
                 }
                 catch (Exception ex)
                 {
@@ -52,6 +59,6 @@ namespace Core
                 }
                 return temp;
             }
-        }      
+        }
     }
 }

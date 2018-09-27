@@ -20,11 +20,11 @@ namespace Core
         }
         public double getKv
         {
-            get => kpv * kmv * kiv;
+            get {return kpv * kmv * kiv;}
         }
-        public double Kmv { get => kmv; set => kmv = value; }
-        public double Kpv { get => kpv; set => kpv = value; }
-        public double Kiv { get => kiv; set => kiv = value; }
+        public double Kmv { get {return kmv;} set { kmv = value;} }
+        public double Kpv { get {return kpv;} set { kpv = value;} }
+        public double Kiv { get {return kiv;} set { kiv = value;} }
     }
     [Serializable]
     public class Material : TechnoligiItemBase
