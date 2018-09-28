@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using Core;
 using System.Windows.Input;
 using WpfApp1.DialogWindows;
 using System.Windows.Controls;
 using System.Windows;
+
+
 
 namespace WpfApp1
 {
@@ -45,13 +47,44 @@ namespace WpfApp1
 
         }
 
-        public void Window_SizeChanged(object o, SizeChangedEventArgs e)
+        /// <summary>
+        /// В случае необходимости изменения ширины выезжающей панели см. сюда
+        /// </summary>
+        /// <param name="o"></param>
+        /// <param name="e"></param>
+        public void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (o is Window)
+            if (sender is Window)
             {
-                Window window = (Window)o;
-                //System.Windows.Forms.MessageBox.Show(window.Width.ToString()); 
-                panelOutlet.Left = -window.Width / 3 + 35;
+                //В случае необходимости изменения ширины выезжающей панели см. сюда
+                Window window = (Window)sender;
+                if (window.WindowState==WindowState.Maximized)
+                    panelOutlet.Left = -System.Windows.SystemParameters.PrimaryScreenWidth / 3 + 35;
+                else
+                    panelOutlet.Left = -window.Width / 3 + 35;
+                //В случае необходимости изменения ширины выезжающей панели см. сюда
+
+                PanelOutlet = panelOutlet;
+                //System.Windows.Forms.MessageBox.Show(panelOutlet.Left.ToString());
+                //System.Windows.Forms.MessageBox.Show((-System.Windows.SystemParameters.PrimaryScreenWidth / 3 + 35).ToString());
+            }
+
+        }
+        /// <summary>
+        /// TODO исправить - не работает
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void Window_StateChanged(object sender, EventArgs e)
+        {
+            if (sender is Window)
+            {
+                Window window = (Window)sender;
+                
+                //В случае необходимости изменения ширины выезжающей панели см. сюда
+                panelOutlet.Left = -System.Windows.SystemParameters.PrimaryScreenWidth / 3 + 35;
+                //В случае необходимости изменения ширины выезжающей панели см. сюда
+
                 PanelOutlet = panelOutlet;
                 //System.Windows.Forms.MessageBox.Show(panelOutlet.Left.ToString());
 
