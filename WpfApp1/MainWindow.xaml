@@ -240,12 +240,13 @@
 
         <Grid Background="Gray" x:Name="stackPanel" Grid.Row="0" Panel.ZIndex="10000" Grid.Column="2" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0" />
+                <ColumnDefinition Width="0"/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <ToggleButton Grid.Column="0" Margin="-30,0,0,0" Padding="0,0,0,0" HorizontalContentAlignment="Stretch"  >
-                <TextBlock Text="Button 1" FontSize="16" Padding="0,0,0,0">
+                <TextBlock FontSize="18" Padding="0,0,0,0" HorizontalAlignment="Center">                    
+                    Фактическая <Run FontWeight="Bold" Foreground="Red" FontSize="20"> n </Run>
                     <TextBlock.LayoutTransform>
                         <RotateTransform Angle="-90"/>
                     </TextBlock.LayoutTransform>
@@ -255,7 +256,7 @@
                         <BeginStoryboard>
                             <Storyboard>
                                 <ThicknessAnimation               
-                                To="-200,0,0,0"
+                                To="{Binding PanelOutlet}"
                                 Duration="0:0:1"
                                 Storyboard.TargetProperty="Margin"
                                     Storyboard.TargetName="stackPanel"/>

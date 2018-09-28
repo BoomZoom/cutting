@@ -8,6 +8,7 @@ using Core;
 using System.Windows.Input;
 using WpfApp1.DialogWindows;
 using System.Windows.Controls;
+using System.Windows;
 
 namespace WpfApp1
 {
@@ -24,6 +25,8 @@ namespace WpfApp1
         private Handling handling;
         private Calculation calculation;
 
+        private Thickness panelOutlet;
+
         public MainWindowViewModel()
         {
             matirial = new Material("Бронза", 182, 0.12, 0.3, 0.23, 0.7, 0.9);
@@ -36,8 +39,25 @@ namespace WpfApp1
             materials = new ObservableCollection<Material>(Serialization<Material>.Deserialization());
             tools = new ObservableCollection<Tool>(Serialization<Tool>.Deserialization());
             handlings = new ObservableCollection<Handling> ( Serialization<Handling>.Deserialization());
+
+            //System.Windows.Forms.MessageBox.Show(System.Windows.SystemParameters.PrimaryScreenWidth.ToString());
+            panelOutlet.Left = (-System.Windows.SystemParameters.PrimaryScreenWidth/3.2)/3;
+
         }
 
+        public void Window_SizeChanged(object o, SizeChangedEventArgs e)
+        {
+            if (o is Window)
+            {
+                Window window = (Window)o;
+                //System.Windows.Forms.MessageBox.Show(window.Width.ToString()); 
+                panelOutlet.Left = -window.Width / 3 + 35;
+                PanelOutlet = panelOutlet;
+                //System.Windows.Forms.MessageBox.Show(panelOutlet.Left.ToString());
+
+            }
+
+        }
 
         public void OnWindowClosing(object sender, EventArgs e)
         {
@@ -191,6 +211,14 @@ namespace WpfApp1
                 calculation.Handling = value;
                 UpdateAnswerAllPropertiesChanged();
             }
+        }
+
+       // public double PanelOutlet { get => panelOutlet; set => panelOutlet = value; }
+        //public Thickness PanelOutlet {
+        //    get => new Thickness(-panelOutlet,0,0,0);  }
+        public Thickness PanelOutlet { get => panelOutlet;
+            set { panelOutlet = value;
+                OnPropertyChanged("PanelOutlet");          }
         }
     }
 }
