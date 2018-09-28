@@ -72,7 +72,7 @@ namespace Core
         /// </summary>
         public double SpindleSpeed_N
         {
-            get { return n_spindleSpeedFact != 0 ? n_spindleSpeedFact :(n_spindleSpeed = (1000 * CuttingSpeed_V) / (System.Math.PI * d_billetDiameter)); }
+            get { return n_spindleSpeedFact > 0 ? n_spindleSpeedFact :(n_spindleSpeed = (1000 * CuttingSpeed_V) / (System.Math.PI * d_billetDiameter)); }
             set { n_spindleSpeedFact = value; }
         }
       
