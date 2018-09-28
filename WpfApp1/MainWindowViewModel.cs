@@ -16,13 +16,15 @@ namespace WpfApp1
 {
     class MainWindowViewModel : ViewModelBase
     {
+        #region Private
+        #region Field
         private ObservableCollection<Material> materials;
         private ObservableCollection<Tool> tools;
         private ObservableCollection<Handling> handlings;
 
         private Command commandPlus;
-
         private Command commandNewValue;
+
         private double spindleSpeed;
 
         private Material matirial;
@@ -31,61 +33,13 @@ namespace WpfApp1
         private Calculation calculation;
 
         private Thickness panelOutlet;
-
-        public MainWindowViewModel()
-        {
-            matirial = new Material("Бронза", 182, 0.12, 0.3, 0.23, 0.7, 0.9);
-            tool = new Tool("ВК6", 2.7);
-            handling = new Handling("Точение", 55, 1, 0.66, 0);
-            calculation = new Calculation(matirial, tool, handling, 4, 1, 95, 100);
-
-            commandPlus = new Command(ChangeVeiw);
-            commandNewValue = new Command(NewValue);
-
-            materials = new ObservableCollection<Material>(Serialization<Material>.Deserialization());
-            tools = new ObservableCollection<Tool>(Serialization<Tool>.Deserialization());
-            handlings = new ObservableCollection<Handling>(Serialization<Handling>.Deserialization());
-
-            //System.Windows.Forms.MessageBox.Show(System.Windows.SystemParameters.PrimaryScreenWidth.ToString());
-            panelOutlet.Left = (-System.Windows.SystemParameters.PrimaryScreenWidth / 3.2) / 3;
-
-        }
-
+        #endregion Field
+        #region Metods
         private void NewValue(object obj)
         {
             calculation.SpindleSpeed_N = SpindleSpeedSourse;
-          //  System.Windows.Forms.MessageBox.Show(SpindleSpeedSourse.ToString());
             UpdateAnswerAllPropertiesChanged();
         }
-
-        /// <summary>
-        /// В случае необходимости изменения ширины выезжающей панели см. сюда
-        /// </summary>
-        /// <param name="o"></param>
-        /// <param name="e"></param>
-        public void Window_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if (sender is Window)
-            {
-                //В случае необходимости изменения ширины выезжающей панели см. сюда
-                Window window = (Window)sender;
-                if (window.WindowState == WindowState.Maximized)
-                    panelOutlet.Left = -System.Windows.SystemParameters.PrimaryScreenWidth / 3 + 35;
-                else
-                    panelOutlet.Left = -window.Width / 3 + 35;
-                //В случае необходимости изменения ширины выезжающей панели см. сюда
-                PanelOutlet = panelOutlet;
-            }
-        }
-
-        public void OnWindowClosing(object sender, EventArgs e)
-        {
-            Serialization<Material>.Save(materials);
-            Serialization<Tool>.Save(tools);
-            Serialization<Handling>.Save(handlings);
-        }
-
-
         private void AddItemListDialogDiligate(object obj)
         {
             if (obj is Material)
@@ -99,7 +53,6 @@ namespace WpfApp1
 
             System.Windows.Forms.MessageBox.Show(obj.ToString());
         }
-
         private void ChangeVeiw(object obj)
         {
             switch (obj.ToString())
@@ -133,7 +86,57 @@ namespace WpfApp1
             OnPropertyChanged("ComputerTime");
             OnPropertyChanged("CuttingForce");
         }
+        #endregion Metods
+        #endregion Private
+        #region Public
+        #region Metods
+        public MainWindowViewModel()
+        {
+            matirial = new Material("Бронза", 182, 0.12, 0.3, 0.23, 0.7, 0.9);
+            tool = new Tool("ВК6", 2.7);
+            handling = new Handling("Точение", 55, 1, 0.66, 0);
+            calculation = new Calculation(matirial, tool, handling, 4, 1, 95, 100);
 
+            commandPlus = new Command(ChangeVeiw);
+            commandNewValue = new Command(NewValue);
+
+            materials = new ObservableCollection<Material>(Serialization<Material>.Deserialization());
+            tools = new ObservableCollection<Tool>(Serialization<Tool>.Deserialization());
+            handlings = new ObservableCollection<Handling>(Serialization<Handling>.Deserialization());
+
+            //System.Windows.Forms.MessageBox.Show(System.Windows.SystemParameters.PrimaryScreenWidth.ToString());
+            panelOutlet.Left = (-System.Windows.SystemParameters.PrimaryScreenWidth / 3.2) / 3;
+
+        }       
+
+        /// <summary>
+        /// В случае необходимости изменения ширины выезжающей панели см. сюда
+        /// </summary>
+        /// <param name="o"></param>
+        /// <param name="e"></param>
+        public void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (sender is Window)
+            {
+                //В случае необходимости изменения ширины выезжающей панели см. сюда
+                Window window = (Window)sender;
+                if (window.WindowState == WindowState.Maximized)
+                    panelOutlet.Left = -System.Windows.SystemParameters.PrimaryScreenWidth / 3 + 35;
+                else
+                    panelOutlet.Left = -window.Width / 3 + 35;
+                //В случае необходимости изменения ширины выезжающей панели см. сюда
+                PanelOutlet = panelOutlet;
+            }
+        }
+
+        public void OnWindowClosing(object sender, EventArgs e)
+        {
+            Serialization<Material>.Save(materials);
+            Serialization<Tool>.Save(tools);
+            Serialization<Handling>.Save(handlings);
+        }
+        #endregion Metods
+        #region Command
         public ICommand ChangeViewCommand
         {
             get { return commandPlus; }
@@ -142,7 +145,8 @@ namespace WpfApp1
         {
             get { return commandNewValue; }
         }
-
+        #endregion Command
+        #region Properties
         public string CuttingSpeed
         {
             get { return "V = " + calculation.CuttingSpeed_V.ToString() + " м/мин"; }
@@ -263,5 +267,7 @@ namespace WpfApp1
                 OnPropertyChanged("PanelOutlet");
             }
         }
+        #endregion Properties
+        #endregion Public
     }
 }
