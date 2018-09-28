@@ -193,8 +193,73 @@
                 </Storyboard>
             </BeginStoryboard>
         </EventTrigger>
+
+        <EventTrigger RoutedEvent="Page.Loaded">
+            <BeginStoryboard Name="backgroundAnimationsBeginStoryboard">
+                <Storyboard >
+                    <ColorAnimation 
+            Storyboard.TargetName="mainPanel"
+            Storyboard.TargetProperty="(DockPanel.Background).(DrawingBrush.Drawing).(DrawingGroup.Children)[0].(GeometryDrawing.Brush).(SolidColorBrush.Color)"
+            From="LightGray" To="DarkGray" Duration="0:0:50" RepeatBehavior="Forever" 
+            AutoReverse="True"/>
+                    <DoubleAnimation 
+            Storyboard.TargetName="mainPanel"
+            Storyboard.TargetProperty="(DockPanel.Background).(DrawingBrush.Transform).(RotateTransform.Angle)"
+            From="0" To="360" Duration="0:5:00" RepeatBehavior="Forever" 
+            AutoReverse="True"/>
+                    <DoubleAnimation 
+            Storyboard.TargetName="mainPanel"
+            Storyboard.TargetProperty="(DockPanel.Background).(DrawingBrush.Drawing).(DrawingGroup.Children)[1].(GeometryDrawing.Geometry).(EllipseGeometry.RadiusX)"
+            From="0.1" To="0.25" Duration="0:0:5" RepeatBehavior="Forever" 
+            AutoReverse="True"/>
+                    <PointAnimation 
+            Storyboard.TargetName="mainPanel"
+            Storyboard.TargetProperty="(DockPanel.Background).(DrawingBrush.Drawing).(DrawingGroup.Children)[2].(GeometryDrawing.Geometry).(EllipseGeometry.Center)"
+            From="-0.25, -0.25" To="1.25,1.25" Duration="0:0:10" RepeatBehavior="Forever" 
+            AutoReverse="True"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
     </Window.Triggers>
-    <Grid>
+    <Grid Name="mainPanel">
+        <Grid.Background>
+            <DrawingBrush TileMode="Tile"
+        Viewport="0,0,100,100" ViewportUnits="Absolute">
+                <DrawingBrush.Drawing>
+                    <DrawingGroup>
+                        <DrawingGroup.Children>
+
+                            <GeometryDrawing>
+                                <GeometryDrawing.Geometry>
+                                    <RectangleGeometry Rect="0,0,1,1" />
+                                </GeometryDrawing.Geometry>
+                                <GeometryDrawing.Brush>
+                                    <SolidColorBrush Color="LightGray" />
+                                </GeometryDrawing.Brush>
+                                <GeometryDrawing.Pen>
+                                    <Pen Thickness="0.01" Brush="DarkGray" />
+                                </GeometryDrawing.Pen>
+                            </GeometryDrawing>
+
+                            <GeometryDrawing Brush="#99CCCCCC">
+                                <GeometryDrawing.Geometry>
+                                    <EllipseGeometry Center="0.75,0.5" RadiusX="0.25" RadiusY="0.25" />
+                                </GeometryDrawing.Geometry>
+                            </GeometryDrawing>
+                            <GeometryDrawing Brush="#66CCCCCC">
+                                <GeometryDrawing.Geometry>
+                                    <EllipseGeometry Center="0.25,0.25" RadiusX="0.1" RadiusY="0.1" />
+                                </GeometryDrawing.Geometry>
+                            </GeometryDrawing>
+                        </DrawingGroup.Children>
+                    </DrawingGroup>
+                </DrawingBrush.Drawing>
+                <DrawingBrush.Transform>
+                    <RotateTransform CenterX="0.5" CenterY="0.5" />
+                </DrawingBrush.Transform>
+            </DrawingBrush>
+        </Grid.Background>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition/>
@@ -206,7 +271,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="10" Background="Bisque">
+        <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="10" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition/>
@@ -241,13 +306,11 @@
 
 
 
-            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=T_DepthOfCut,Mode=TwoWay}"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=T_DepthOfCut,Mode=TwoWay}"/>
             <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=S_Innings,Mode=TwoWay}"></TextBox>
             <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Path=L_LengthOfTheSurfaceToBeTreated,Mode=TwoWay}"></TextBox>
             <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Path=D_BilletDiameter,Mode=TwoWay}"></TextBox>
-            <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding Path=Materials,Mode=OneWay}"   SelectedItem="{Binding MySelectedItemMaterial}"     ToolTip="Выбор Материала">
-                
-            </ComboBox>
+            <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding Path=Materials,Mode=OneWay}"   SelectedItem="{Binding MySelectedItemMaterial}"  Background="Red"    ToolTip="Выбор Материала"/>
             <ComboBox Grid.Column="1" Grid.Row="5" ItemsSource="{Binding Path=Tools,Mode=OneWay}"       SelectedItem="{Binding MySelectedItemTool}"         ToolTip="Выбор Инструмента"/>
             <ComboBox Grid.Column="1" Grid.Row="6" ItemsSource="{Binding Path=Handlings,Mode=OneWay}"   SelectedItem="{Binding MySelectedItemHandling}"     ToolTip="Выбор Вида обработки" />
 
@@ -311,12 +374,15 @@
             </Grid>
         </Grid>
 
-        <StackPanel ToolTip="Ответ" Grid.Column="1" Grid.Row="1" Margin="10" Background="Bisque">
-            <TextBlock Padding="10" Text="{Binding Path=CuttingSpeed,Mode=OneWay, UpdateSourceTrigger= PropertyChanged  }" />
-            <TextBlock Padding="10" Text="{Binding Path=SpindleSpeed,Mode=OneWay}"/>
-            <TextBlock Padding="10" Text="{Binding Path=ComputerTime,Mode=OneWay}"/>
-            <TextBlock Padding="10" Text="{Binding Path= CuttingForce,Mode=OneWay}"/>
-            <TextBlock Padding="10" Text="{Binding Path= Power,Mode=OneWay}"/>
-        </StackPanel>
+        <Border Grid.Column="1" Grid.Row="1" Cursor="Pen">
+            <StackPanel ToolTip="Ответ" Grid.Column="1" Grid.Row="1" Margin="10" Background="Bisque">
+                <TextBlock Padding="10" Text="{Binding Path=CuttingSpeed,Mode=OneWay, UpdateSourceTrigger= PropertyChanged  }" />
+                <TextBlock Padding="10" Text="{Binding Path=SpindleSpeed,Mode=OneWay}"/>
+                <TextBlock Padding="10" Text="{Binding Path=ComputerTime,Mode=OneWay}"/>
+                <TextBlock Padding="10" Text="{Binding Path= CuttingForce,Mode=OneWay}"/>
+                <TextBlock Padding="10" Text="{Binding Path= Power,Mode=OneWay}"/>
+            </StackPanel>
+        </Border>
+
     </Grid>
 </Window>
