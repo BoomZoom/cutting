@@ -25,7 +25,7 @@ namespace WpfApp1
         private Command commandPlus;
         private Command commandNewValue;
 
-        private double spindleSpeed;
+        //  private double spindleSpeed;
 
         private Material matirial;
         private Tool tool;
@@ -37,7 +37,7 @@ namespace WpfApp1
         #region Metods
         private void NewValue(object obj)
         {
-            calculation.SpindleSpeed_N = SpindleSpeedSourse;
+            calculation.SpindleSpeed_N = SpindleSpeedReal;
             UpdateAnswerAllPropertiesChanged();
         }
         private void AddItemListDialogDiligate(object obj)
@@ -89,7 +89,7 @@ namespace WpfApp1
         #endregion Metods
         #endregion Private
         #region Public
-        #region Metods
+        #region ctor
         public MainWindowViewModel()
         {
             matirial = new Material("Бронза", 182, 0.12, 0.3, 0.23, 0.7, 0.9);
@@ -107,8 +107,9 @@ namespace WpfApp1
             //System.Windows.Forms.MessageBox.Show(System.Windows.SystemParameters.PrimaryScreenWidth.ToString());
             panelOutlet.Left = (-System.Windows.SystemParameters.PrimaryScreenWidth / 3.2) / 3;
 
-        }       
-
+        }
+        #endregion ctor
+        #region Metods
         /// <summary>
         /// В случае необходимости изменения ширины выезжающей панели см. сюда
         /// </summary>
@@ -167,7 +168,7 @@ namespace WpfApp1
             //    }
             //}
         }
-        public double SpindleSpeedSourse { get { return spindleSpeed; } set { spindleSpeed = value; } }
+        public double SpindleSpeedReal { get; set; }// { return spindleSpeed; } set { spindleSpeed = value; } }
         public string ComputerTime
         {
             get { return "Tm = " + calculation.ComputerTime_Tm.ToString() + " мин"; }
