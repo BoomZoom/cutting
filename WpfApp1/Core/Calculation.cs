@@ -21,6 +21,7 @@ namespace Core
         private double l_lengthOfTheSurfaceToBeTreated;         //длина обрабатываемой поверхности
 
         private double n_spindleSpeed = 0;                      //частота вращения шпинделя
+        private double n_spindleSpeedFact=0;                    //фактическая частота вращения шпинделя
         private double V_cuttingSpeed = 0;                      //скорость резанья
         private double Tm_MachineTime = 0;                      //Машиное время
         private double Pz_cuttingForce = 0;                     //усилие резания
@@ -71,7 +72,8 @@ namespace Core
         /// </summary>
         public double SpindleSpeed_N
         {
-            get { return n_spindleSpeed = (1000 * CuttingSpeed_V) / (System.Math.PI * d_billetDiameter); }
+            get { return n_spindleSpeedFact != 0 ? n_spindleSpeedFact :(n_spindleSpeed = (1000 * CuttingSpeed_V) / (System.Math.PI * d_billetDiameter)); }
+            set { n_spindleSpeedFact = value; }
         }
       
         /// <summary>
@@ -81,10 +83,10 @@ namespace Core
         {
             get {return CuttingSpeed_V / 60 * CuttingForce_Pz;}
         }
-               public double SetTheActualSpeed
-        {
-            set { n_spindleSpeed = value; }
-        }
+        //       public double SetTheActualSpeed
+        //{
+        //    set { n_spindleSpeed = value; }
+        //}
 
         /// <summary>
         /// Машиное время (мин)
@@ -103,13 +105,13 @@ namespace Core
                 System.Math.Pow(s_innings, handling.Yp) * 
                 System.Math.Pow(V_cuttingSpeed, handling.Np) * 1; }//TODO Сделать коэфициент Кp
         }
-        public double T_DepthOfCut { get {return t_depthOfCut; }set { t_depthOfCut = value;} }
-        public double S_Innings { get {return s_innings;} set { s_innings = value;} }
-        public double D_BilletDiameter { get {return d_billetDiameter;} set { d_billetDiameter = value;} }
-        public double L_LengthOfTheSurfaceToBeTreated { get {return l_lengthOfTheSurfaceToBeTreated;} set { l_lengthOfTheSurfaceToBeTreated = value;} }
-
-        internal Material Material { get {return material;} set { material = value; kv.Kmv = value.Kmv; kv.Kpv = value.Kpv; } }
-        internal Tool Tool { get {return tool;} set { tool = value; kv.Kiv = value.Kiv; } }
-        internal Handling Handling { get { return handling; } set { handling = value; } }
+        public double T_DepthOfCut { get {return t_depthOfCut; }                                            set { n_spindleSpeedFact = 0; t_depthOfCut = value;} }
+        public double S_Innings { get {return s_innings;}                                                   set { n_spindleSpeedFact = 0; s_innings = value;} }
+        public double D_BilletDiameter { get {return d_billetDiameter;}                                     set { n_spindleSpeedFact = 0; d_billetDiameter = value;} }
+        public double L_LengthOfTheSurfaceToBeTreated { get {return l_lengthOfTheSurfaceToBeTreated;}       set { n_spindleSpeedFact = 0; l_lengthOfTheSurfaceToBeTreated = value;} }
+                                                                                                                 
+        internal Material Material { get {return material;}                                                 set { n_spindleSpeedFact = 0; material = value; kv.Kmv = value.Kmv; kv.Kpv = value.Kpv; } }
+        internal Tool Tool { get {return tool;}                                                             set { n_spindleSpeedFact = 0; tool = value; kv.Kiv = value.Kiv; } }
+        internal Handling Handling { get { return handling; }                                               set { n_spindleSpeedFact = 0; handling = value; } }
     }
 }

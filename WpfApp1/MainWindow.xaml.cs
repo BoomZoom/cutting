@@ -27,7 +27,6 @@ namespace WpfApp1
             DataContext = mainWindowViewModel;
             Closing += mainWindowViewModel.OnWindowClosing;
             SizeChanged += mainWindowViewModel.Window_SizeChanged;
-            //StateChanged += mainWindowViewModel.Window_StateChanged;
         }
 
         

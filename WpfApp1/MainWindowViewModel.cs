@@ -20,7 +20,10 @@ namespace WpfApp1
         private ObservableCollection<Tool> tools;
         private ObservableCollection<Handling> handlings;
 
-        private Command comand;
+        private Command commandPlus;
+
+        private Command commandNewValue;
+        private double spindleSpeed;
 
         private Material matirial;
         private Tool tool;
@@ -36,15 +39,23 @@ namespace WpfApp1
             handling = new Handling("Точение", 55, 1, 0.66, 0);
             calculation = new Calculation(matirial, tool, handling, 4, 1, 95, 100);
 
-            comand = new Command(ChangeVeiw);
+            commandPlus = new Command(ChangeVeiw);
+            commandNewValue = new Command(NewValue);
 
             materials = new ObservableCollection<Material>(Serialization<Material>.Deserialization());
             tools = new ObservableCollection<Tool>(Serialization<Tool>.Deserialization());
-            handlings = new ObservableCollection<Handling> ( Serialization<Handling>.Deserialization());
+            handlings = new ObservableCollection<Handling>(Serialization<Handling>.Deserialization());
 
             //System.Windows.Forms.MessageBox.Show(System.Windows.SystemParameters.PrimaryScreenWidth.ToString());
-            panelOutlet.Left = (-System.Windows.SystemParameters.PrimaryScreenWidth/3.2)/3;
+            panelOutlet.Left = (-System.Windows.SystemParameters.PrimaryScreenWidth / 3.2) / 3;
 
+        }
+
+        private void NewValue(object obj)
+        {
+            calculation.SpindleSpeed_N = SpindleSpeedSourse;
+          //  System.Windows.Forms.MessageBox.Show(SpindleSpeedSourse.ToString());
+            UpdateAnswerAllPropertiesChanged();
         }
 
         /// <summary>
@@ -58,38 +69,13 @@ namespace WpfApp1
             {
                 //В случае необходимости изменения ширины выезжающей панели см. сюда
                 Window window = (Window)sender;
-                if (window.WindowState==WindowState.Maximized)
+                if (window.WindowState == WindowState.Maximized)
                     panelOutlet.Left = -System.Windows.SystemParameters.PrimaryScreenWidth / 3 + 35;
                 else
                     panelOutlet.Left = -window.Width / 3 + 35;
                 //В случае необходимости изменения ширины выезжающей панели см. сюда
-
                 PanelOutlet = panelOutlet;
-                //System.Windows.Forms.MessageBox.Show(panelOutlet.Left.ToString());
-                //System.Windows.Forms.MessageBox.Show((-System.Windows.SystemParameters.PrimaryScreenWidth / 3 + 35).ToString());
             }
-
-        }
-        /// <summary>
-        /// TODO исправить - не работает
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public void Window_StateChanged(object sender, EventArgs e)
-        {
-            if (sender is Window)
-            {
-                Window window = (Window)sender;
-                
-                //В случае необходимости изменения ширины выезжающей панели см. сюда
-                panelOutlet.Left = -System.Windows.SystemParameters.PrimaryScreenWidth / 3 + 35;
-                //В случае необходимости изменения ширины выезжающей панели см. сюда
-
-                PanelOutlet = panelOutlet;
-                //System.Windows.Forms.MessageBox.Show(panelOutlet.Left.ToString());
-
-            }
-
         }
 
         public void OnWindowClosing(object sender, EventArgs e)
@@ -150,7 +136,11 @@ namespace WpfApp1
 
         public ICommand ChangeViewCommand
         {
-            get {return comand;}
+            get { return commandPlus; }
+        }
+        public ICommand AddNewValueSpindleSpeed
+        {
+            get { return commandNewValue; }
         }
 
         public string CuttingSpeed
@@ -160,7 +150,20 @@ namespace WpfApp1
         public string SpindleSpeed
         {
             get { return "n = " + calculation.SpindleSpeed_N.ToString() + " об/мин"; }
+            //set
+            //{
+            //    try
+            //    {
+            //        calculation.SpindleSpeed_N = Convert.ToDouble(value);
+            //        UpdateAnswerAllPropertiesChanged();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        System.Windows.Forms.MessageBox.Show(ex.Message);
+            //    }
+            //}
         }
+        public double SpindleSpeedSourse { get { return spindleSpeed; } set { spindleSpeed = value; } }
         public string ComputerTime
         {
             get { return "Tm = " + calculation.ComputerTime_Tm.ToString() + " мин"; }
@@ -176,7 +179,7 @@ namespace WpfApp1
 
         public double T_DepthOfCut
         {
-            get {return calculation.T_DepthOfCut;}
+            get { return calculation.T_DepthOfCut; }
             set
             {
                 calculation.T_DepthOfCut = value;
@@ -185,7 +188,7 @@ namespace WpfApp1
         }
         public double S_Innings
         {
-            get {return calculation.S_Innings;}
+            get { return calculation.S_Innings; }
             set
             {
                 calculation.S_Innings = value;
@@ -194,7 +197,7 @@ namespace WpfApp1
         }
         public double L_LengthOfTheSurfaceToBeTreated
         {
-            get {return calculation.L_LengthOfTheSurfaceToBeTreated;}
+            get { return calculation.L_LengthOfTheSurfaceToBeTreated; }
             set
             {
                 calculation.L_LengthOfTheSurfaceToBeTreated = value;
@@ -203,7 +206,7 @@ namespace WpfApp1
         }
         public double D_BilletDiameter
         {
-            get {return calculation.D_BilletDiameter;}
+            get { return calculation.D_BilletDiameter; }
             set
             {
                 calculation.D_BilletDiameter = value;
@@ -211,11 +214,13 @@ namespace WpfApp1
             }
         }
 
-        public ObservableCollection<Material> Materials {
-            get { return materials; } 
-            set { materials = value; } }
-        public ObservableCollection<Tool> Tools          { get {return tools;}      set { tools = value;} }
-        public ObservableCollection<Handling> Handlings  { get {return handlings;}  set { handlings = value;} }
+        public ObservableCollection<Material> Materials
+        {
+            get { return materials; }
+            set { materials = value; }
+        }
+        public ObservableCollection<Tool> Tools { get { return tools; } set { tools = value; } }
+        public ObservableCollection<Handling> Handlings { get { return handlings; } set { handlings = value; } }
 
         public Material MySelectedItemMatirial
         {
@@ -246,12 +251,17 @@ namespace WpfApp1
             }
         }
 
-       // public double PanelOutlet { get => panelOutlet; set => panelOutlet = value; }
+        // public double PanelOutlet { get => panelOutlet; set => panelOutlet = value; }
         //public Thickness PanelOutlet {
         //    get => new Thickness(-panelOutlet,0,0,0);  }
-        public Thickness PanelOutlet { get => panelOutlet;
-            set { panelOutlet = value;
-                OnPropertyChanged("PanelOutlet");          }
+        public Thickness PanelOutlet
+        {
+            get => panelOutlet;
+            set
+            {
+                panelOutlet = value;
+                OnPropertyChanged("PanelOutlet");
+            }
         }
     }
 }

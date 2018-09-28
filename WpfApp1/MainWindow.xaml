@@ -238,10 +238,12 @@
 
         </Grid>
 
-        <Grid Background="Gray" x:Name="stackPanel" Grid.Row="0" Panel.ZIndex="10000" Grid.Column="2" >
+        <!--TODO убрать margin -->
+        <Grid Background="Gray" x:Name="ExitPanel" Grid.Row="0" 
+              Margin="-200,0,0,0"
+              Panel.ZIndex="10000" Grid.Column="2" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0"/>
-                <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <ToggleButton Grid.Column="0" Margin="-30,0,0,0" Padding="0,0,0,0" HorizontalContentAlignment="Stretch"  >
@@ -257,9 +259,9 @@
                             <Storyboard>
                                 <ThicknessAnimation               
                                 To="{Binding PanelOutlet}"
-                                Duration="0:0:1"
+                                Duration="0:0:0.3"
                                 Storyboard.TargetProperty="Margin"
-                                    Storyboard.TargetName="stackPanel"/>
+                                    Storyboard.TargetName="ExitPanel"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger>
@@ -268,17 +270,28 @@
                             <Storyboard>
                                 <ThicknessAnimation
                                 To="0,0,0,0"
-                                Duration="0:0:1"
+                                Duration="0:0:0.3"
                                 Storyboard.TargetProperty="Margin" 
-                                     Storyboard.TargetName="stackPanel"/>
+                                     Storyboard.TargetName="ExitPanel"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger>
                 </ToggleButton.Triggers>
             </ToggleButton>
-            <Button Grid.Column="1">
-
-            </Button>
+            
+            <Grid Background="Aqua" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBox Text="{Binding Path=SpindleSpeedSourse}"></TextBox>
+                <Button Grid.Row="1" Command="{Binding AddNewValueSpindleSpeed}">
+                    temp text
+                </Button>
+            </Grid>
         </Grid>
 
         <StackPanel Grid.Column="1" Grid.Row="1" Margin="10" Background="Bisque">
