@@ -27,11 +27,11 @@
         <TextBlock Grid.Column="0" Grid.Row="3">Yp</TextBlock>
         <TextBlock Grid.Column="0" Grid.Row="4">Np</TextBlock>
 
-        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Name,Mode=OneWayToSource}"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=Cp}"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Path=Xp}"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Path=Yp}"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Path=Np}"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Name,Mode=OneWayToSource}" ToolTip="Тип обработки"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=Cp}" ToolTip="Поправочный коэфициент"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Path=Xp}" ToolTip="Поправочный коэфициент"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Path=Yp}" ToolTip="Поправочный коэфициент"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Path=Np}" ToolTip="Поправочный коэфициент"/>
 
 
         <Button Grid.Column="1" Grid.Row="7" Content="Add" Command="{Binding AddHanding}"/>

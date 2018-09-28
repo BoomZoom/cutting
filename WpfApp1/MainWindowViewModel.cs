@@ -25,8 +25,6 @@ namespace WpfApp1
         private Command commandPlus;
         private Command commandNewValue;
 
-        //  private double spindleSpeed;
-
         private Material matirial;
         private Tool tool;
         private Handling handling;
@@ -43,15 +41,11 @@ namespace WpfApp1
         private void AddItemListDialogDiligate(object obj)
         {
             if (obj is Material)
-            {
-                Materials.Add((Material)obj);
-            }
+                Materials.Add((Material)obj);           
             if (obj is Tool)
                 Tools.Add((Tool)obj);
             if (obj is Handling)
-                Handlings.Add((Handling)obj);
-
-            System.Windows.Forms.MessageBox.Show(obj.ToString());
+                Handlings.Add((Handling)obj);           
         }
         private void ChangeVeiw(object obj)
         {
@@ -104,9 +98,7 @@ namespace WpfApp1
             tools = new ObservableCollection<Tool>(Serialization<Tool>.Deserialization());
             handlings = new ObservableCollection<Handling>(Serialization<Handling>.Deserialization());
 
-            //System.Windows.Forms.MessageBox.Show(System.Windows.SystemParameters.PrimaryScreenWidth.ToString());
             panelOutlet.Left = (-System.Windows.SystemParameters.PrimaryScreenWidth / 3.2) / 3;
-
         }
         #endregion ctor
         #region Metods
@@ -129,7 +121,6 @@ namespace WpfApp1
                 PanelOutlet = panelOutlet;
             }
         }
-
         public void OnWindowClosing(object sender, EventArgs e)
         {
             Serialization<Material>.Save(materials);
@@ -155,20 +146,8 @@ namespace WpfApp1
         public string SpindleSpeed
         {
             get { return "n = " + calculation.SpindleSpeed_N.ToString() + " об/мин"; }
-            //set
-            //{
-            //    try
-            //    {
-            //        calculation.SpindleSpeed_N = Convert.ToDouble(value);
-            //        UpdateAnswerAllPropertiesChanged();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        System.Windows.Forms.MessageBox.Show(ex.Message);
-            //    }
-            //}
         }
-        public double SpindleSpeedReal { get; set; }// { return spindleSpeed; } set { spindleSpeed = value; } }
+        public double SpindleSpeedReal { get; set; }
         public string ComputerTime
         {
             get { return "Tm = " + calculation.ComputerTime_Tm.ToString() + " мин"; }

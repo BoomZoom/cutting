@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Core;
 namespace WpfApp1
@@ -14,10 +15,11 @@ namespace WpfApp1
 
         private string name;
         private double kiv;
-        public AddToolViewModel(Action<object> action)
+        public AddToolViewModel(Window window, Action<object> action)
         {
             this.action = action;
             command = new Command(CreateTool);
+            this.window = window;
         }
         public ICommand AddTool {get { return command;}}
 
@@ -29,6 +31,7 @@ namespace WpfApp1
             try
             {              
                 action(new Tool(name, kiv));
+                window.Close();
             }
             catch (Exception ex)
             {

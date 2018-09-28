@@ -731,6 +731,11 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Padding" Value="10 0 10 0"/>
-        </Style>    
+        </Style>
+
+
+        
+
+
     </Application.Resources>
 </Application>

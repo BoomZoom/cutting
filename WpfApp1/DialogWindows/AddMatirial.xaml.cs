@@ -22,7 +22,7 @@ namespace WpfApp1.DialogWindows
         public AddMatirial(Action<object> action)
         {
             InitializeComponent();
-            DataContext = new AddMatirialViewModel(action);
+            DataContext = new AddMatirialViewModel(this,action);
         }
     }
 }

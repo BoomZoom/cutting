@@ -22,7 +22,7 @@ namespace WpfApp1.DialogWindows
         public AddTool(Action<object> action)
         {
             InitializeComponent();
-            DataContext = new AddToolViewModel(action);
+            DataContext = new AddToolViewModel(this,action);
         }
     }
 }

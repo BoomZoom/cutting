@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using System.Windows;
 using System.Windows.Input;
 using Core;
 
@@ -17,12 +19,14 @@ namespace WpfApp1
         private double np;
 
         private Command comand;
+      
         //TODO убрать object из action во всех класах этого типа
         private Action<object> action;
-        public AddHandingViewModel(Action<object> action)
+        public AddHandingViewModel(Window window,Action<object> action)
         {
             this.action = action;
             comand = new Command(CreateHanding);
+            this.window = window;
         }
 
         public ICommand AddHanding { get { return comand; } }
@@ -36,6 +40,7 @@ namespace WpfApp1
         private void CreateHanding(object NotUse)
         {
             action(new Handling(Name, cp, xp, yp, np));
+            window.Close();
         }
     }
 }

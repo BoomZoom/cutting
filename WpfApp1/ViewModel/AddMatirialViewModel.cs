@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Input;
 using Core;
+
 
 namespace WpfApp1
 {
@@ -21,10 +23,11 @@ namespace WpfApp1
         private double kmv;
         private double kpv;
 
-        public AddMatirialViewModel(Action<object> action)
+        public AddMatirialViewModel(Window window, Action<object> action)
         {
             this.action = action;
             comand = new Command(CreateMatiriall);
+            this.window = window;
         }
         private void CreateMatiriall(object NotUse)
         {
@@ -32,6 +35,7 @@ namespace WpfApp1
             {
                 Material matirial = new Material(name, cv, xv, yv, mv, kmv, kpv);
                 action(matirial);
+                window.Close();
             }
             catch (Exception ex)
             {
