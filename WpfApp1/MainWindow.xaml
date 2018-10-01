@@ -375,7 +375,7 @@
         </Grid>
 
         <Border Grid.Column="1" Grid.Row="1" Cursor="Pen">
-            <StackPanel ToolTip="Ответ" Grid.Column="1" Grid.Row="1" Margin="10" Background="Bisque">
+            <StackPanel ToolTip="Ответ" Grid.Column="1" Grid.Row="1" Margin="10" Background="#88ffe4c4">
                 <TextBlock Padding="10" Text="{Binding Path=CuttingSpeed,Mode=OneWay, UpdateSourceTrigger= PropertyChanged  }" />
                 <TextBlock Padding="10" Text="{Binding Path=SpindleSpeed,Mode=OneWay}"/>
                 <TextBlock Padding="10" Text="{Binding Path=ComputerTime,Mode=OneWay}"/>

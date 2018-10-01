@@ -9,6 +9,7 @@ using System.Windows.Input;
 using WpfApp1.DialogWindows;
 using System.Windows.Controls;
 using System.Windows;
+using System.Speech.Synthesis;
 
 
 
@@ -18,6 +19,8 @@ namespace WpfApp1
     {
         #region Private
         #region Field
+        private readonly SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer(); //голосовой модуль // добавлен по приколу
+
         private ObservableCollection<Material> materials;
         private ObservableCollection<Tool> tools;
         private ObservableCollection<Handling> handlings;
@@ -86,6 +89,7 @@ namespace WpfApp1
         #region ctor
         public MainWindowViewModel()
         {
+            speechSynthesizer.SpeakAsync("Вас приветствует Резак 3000");
             matirial = new Material("Бронза", 182, 0.12, 0.3, 0.23, 0.7, 0.9);
             tool = new Tool("ВК6", 2.7);
             handling = new Handling("Точение", 55, 1, 0.66, 0);
